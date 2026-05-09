@@ -83,34 +83,43 @@
        3. Portal Tabs — Patient / Doctor form switcher
     ─────────────────────────────────────────────────────────────────── */
     function initPortalTabs() {
+
         var tabs = $$('.mc-portal-tab');
+
         if (!tabs.length) return;
 
         tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                var target = this.dataset.target; // 'patient' or 'doctor'
 
-                // Update tabs
+            tab.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                var target = this.dataset.target;
+
+                // Tabs
                 tabs.forEach(function (t) {
                     t.classList.remove('mc-portal-tab--active');
                     t.setAttribute('aria-selected', 'false');
                 });
+
                 this.classList.add('mc-portal-tab--active');
                 this.setAttribute('aria-selected', 'true');
 
-                // Update panels with smooth swap
-                var panels = $$('.mc-form-panel');
-                panels.forEach(function (panel) {
+                // Panels
+                $$('.mc-form-panel').forEach(function (panel) {
                     panel.classList.add('mc-form-panel--hidden');
                 });
 
                 var activePanel = $('#panel' + capitalize(target));
+
                 if (activePanel) {
                     activePanel.classList.remove('mc-form-panel--hidden');
-                    activePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
+
             });
+
         });
+
     }
 
     function capitalize(str) {
