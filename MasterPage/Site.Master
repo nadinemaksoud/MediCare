@@ -1,19 +1,114 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MediCare.MasterPage.Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="MediCare.SiteMaster" %>
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MediCare – Smart medication tracking and health management platform for patients and doctors." />
+    <title>MediCare – Smart Health Tracking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/css/default.css") %>" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+    <form id="form1" runat="server"> 
+    <!-- NAVBAR -->
+    <header class="mc-navbar" id="mcNavbar">
+        <div class="mc-container mc-navbar__inner">
+
+            <a href="Default.aspx" class="mc-navbar__logo" aria-label="MediCare Home">
+                <div class="mc-logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="10" fill="#1A9E5C"/>
+                        <path d="M16 7v18M7 16h18" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="mc-logo-text">Medi<strong>Care</strong></span>
+            </a>
+
+            <nav class="mc-navbar__nav" aria-label="Primary navigation">
+                <a href="Default.aspx" class="mc-nav-link mc-nav-link--active">Home</a>
+                <a href="#about" class="mc-nav-link">About</a>
+                <a href="#contact" class="mc-nav-link">Contact</a>
+            </nav>
+
+            <div class="mc-navbar__actions">
+                <a href="#auth-section" class="mc-btn mc-btn--ghost mc-btn--sm">Sign In</a>
+                <a href="#auth-section" class="mc-btn mc-btn--primary mc-btn--sm">Get Started</a>
+            </div>
+
+            <button class="mc-hamburger" id="mcHamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </form>
+
+        <div class="mc-mobile-menu" id="mcMobileMenu" aria-hidden="true">
+            <nav class="mc-mobile-nav">
+                <a href="Default.aspx" class="mc-mobile-link">Home</a>
+                <a href="#about" class="mc-mobile-link">About</a>
+                <a href="#contact" class="mc-mobile-link">Contact</a>
+                <div class="mc-mobile-actions">
+                    <a href="#auth-section" class="mc-btn mc-btn--ghost mc-btn--full">Sign In</a>
+                    <a href="#auth-section" class="mc-btn mc-btn--primary mc-btn--full">Get Started</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main id="mainContent">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mc-footer" id="contact">
+        <div class="mc-container mc-footer__inner">
+            <div class="mc-footer__brand">
+                <div class="mc-footer__logo">
+                    <div class="mc-logo-icon mc-logo-icon--sm">
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="10" fill="#1A9E5C"/>
+                            <path d="M16 7v18M7 16h18" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span class="mc-logo-text mc-logo-text--light">Medi<strong>Care</strong></span>
+                </div>
+                <p class="mc-footer__tagline">Empowering patients. Supporting doctors.<br />One platform for smarter health.</p>
+            </div>
+
+            <div class="mc-footer__links">
+                <div class="mc-footer__col">
+                    <h4>Platform</h4>
+                    <a href="#auth-section">Patient Portal</a>
+                    <a href="#auth-section">Doctor Portal</a>
+                    <a href="#">How It Works</a>
+                </div>
+                <div class="mc-footer__col">
+                    <h4>Company</h4>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="mc-footer__col">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">Status</a>
+                </div>
+            </div>
+        </div>
+        <div class="mc-footer__bottom">
+            <div class="mc-container">
+                <p>&copy; 2025 MediCare Health Platform. All rights reserved.</p>
+                <p>Built with care for better health outcomes.</p>
+            </div>
+        </div>
+    </footer>
+        </form>
+    <script src="<%= ResolveUrl("~/js/default.js") %>"></script>
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
 </body>
 </html>
