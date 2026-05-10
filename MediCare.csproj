@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="css\dashboard.css" />
     <Content Include="css\default.css" />
+    <Content Include="css\medications.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="js\dashboard.js" />
@@ -88,9 +89,9 @@
     <Content Include="Pages\Patient\Dashboard.aspx" />
     <Content Include="Pages\Patient\MealCalculator.aspx" />
     <Content Include="Pages\Patient\Medications.aspx" />
-    <Content Include="Pages\Patient\utritions.aspx" />
     <Content Include="Pages\Patient\RequestConsultation.aspx" />
     <Content Include="Pages\Patient\TakeDose.aspx" />
+    <Content Include="Pages\Patient\utritions.aspx" />
     <Content Include="Pages\Shared\Chatbot.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -229,13 +230,6 @@
     <Compile Include="Pages\Patient\Medications.aspx.designer.cs">
       <DependentUpon>Medications.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Patient\utritions.aspx.cs">
-      <DependentUpon>utritions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Patient\utritions.aspx.designer.cs">
-      <DependentUpon>utritions.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Patient\RequestConsultation.aspx.cs">
       <DependentUpon>RequestConsultation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -249,6 +243,13 @@
     </Compile>
     <Compile Include="Pages\Patient\TakeDose.aspx.designer.cs">
       <DependentUpon>TakeDose.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Patient\utritions.aspx.cs">
+      <DependentUpon>utritions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Patient\utritions.aspx.designer.cs">
+      <DependentUpon>utritions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shared\Chatbot.aspx.cs">
       <DependentUpon>Chatbot.aspx</DependentUpon>
