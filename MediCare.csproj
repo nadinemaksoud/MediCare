@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{62BD22C6-5B55-A166-7F93-E8B3827B49F6}</ProjectGuid>
+    <ProjectGuid>{BFD69083-51A1-4196-9508-7DDFB9BA84D0}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -17,11 +17,6 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44301</IISExpressSSLPort>
-    <Use64BitIISExpress />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
-    <UseGlobalApplicationHostFile />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -72,34 +67,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-
     <Content Include="css\dashboard.css" />
     <Content Include="css\default.css" />
     <Content Include="css\mealCalculator.css" />
     <Content Include="css\medications.css" />
     <Content Include="css\nutritions.css" />
     <Content Include="css\search.css" />
-    <!-- JS -->
     <Content Include="default.aspx" />
-    <Content Include="Database\Medicine+Food.sql" />
-    <Content Include="Database\Users+Doctors+Patients.sql" />
-
     <Content Include="Global.asax" />
     <Content Include="js\dashboard.js" />
     <Content Include="js\default.js" />
     <Content Include="js\mealCalculator.js" />
     <Content Include="js\Nutritions.js" />
     <Content Include="js\search.js" />
-    <!-- Pages -->
-    <Content Include="default.aspx" />
-    <Content Include="Global.asax" />
-    <Content Include="Pages\Account\DoctorRegistration.aspx" />
-    <Content Include="Pages\Account\Login.aspx" />
-    <Content Include="Pages\Account\PatientRegistration.aspx" />
-    <Content Include="Pages\Account\Profile.aspx" />
-    <Content Include="Pages\Account\Registration.aspx" />
-    <Content Include="Web.config" />
-    <!-- Admin -->
     <Content Include="Pages\Account\Login.aspx" />
     <Content Include="Pages\Account\Profile.aspx" />
     <Content Include="Pages\Account\Registration.aspx" />
@@ -107,23 +87,17 @@
     <Content Include="Pages\Admin\FoodCatalog.aspx" />
     <Content Include="Pages\Admin\MedicineCatalog.aspx" />
     <Content Include="Pages\Admin\UserManagement.aspx" />
-    <!-- Doctor -->
     <Content Include="Pages\Doctor\ConsultationRequests.aspx" />
     <Content Include="Pages\Doctor\Dashboard.aspx" />
     <Content Include="Pages\Doctor\ManageMedication.aspx" />
     <Content Include="Pages\Doctor\ManageNutrition.aspx" />
-
-    <!-- Patient (MERGED BOTH VERSIONS) -->
-    <Content Include="Pages\Patient\MyNutritionPlan.aspx" />
-    <Content Include="Pages\Patient\RequestConsultation.aspx" />
-    <Content Include="Pages\Patient\TakeDose.aspx" />
+    <Content Include="Pages\Doctor\PatientList.aspx" />
+    <Content Include="Pages\Patient\Dashboard.aspx" />
+    <Content Include="Pages\Patient\MealCalculator.aspx" />
     <Content Include="Pages\Patient\Medications.aspx" />
-    <!-- Database files (IMPORTANT FIX FROM mhamad-database) -->
-    <Content Include="Database\Medicine+Food.sql" />
-    <Content Include="Database\Users+Doctors+Patients.sql" />
-    <Content Include="Database\lebanese_food_database.csv" />
-    <Content Include="Database\lebanese_food_reference.pdf" />
-    <Content Include="Database\lebanon_drugs_database.csv" />
+    <Content Include="Pages\Patient\Nutritions.aspx" />
+    <Content Include="Pages\Patient\Search.aspx" />
+    <Content Include="Pages\Shared\Chatbot.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\Models\ConsultationRequest.cs" />
@@ -278,23 +252,15 @@
     <Compile Include="Pages\Shared\Chatbot.aspx.cs">
       <DependentUpon>Chatbot.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-  <ItemGroup>
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="Pages\Shared\Chatbot.aspx.designer.cs">
+      <DependentUpon>Chatbot.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
   <ItemGroup>
-
     <Content Include="MasterPage\Site.Master" />
     <Content Include="MasterPage\PatientSite.Master" />
-
-    <Content Include="Database\lebanese_food_reference.pdf" />
-    <Content Include="Database\lebanese_food_database.csv" />
-    <Content Include="Database\lebanon_drugs_database.csv" />
-
     <None Include="packages.config" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
@@ -303,80 +269,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs" />
-    <Compile Include="MasterPage\PatientSite.Master.cs">
-      <DependentUpon>PatientSite.Master</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPage\PatientSite.Master.designer.cs">
-      <DependentUpon>PatientSite.Master</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPage\Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPage\Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\DoctorRegistration.aspx.cs">
-      <DependentUpon>DoctorRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\DoctorRegistration.aspx.designer.cs">
-      <DependentUpon>DoctorRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\PatientRegistration.aspx.cs">
-      <DependentUpon>PatientRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\PatientRegistration.aspx.designer.cs">
-      <DependentUpon>PatientRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\Registration.aspx.cs">
-      <DependentUpon>Registration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Account\Registration.aspx.designer.cs">
-      <DependentUpon>Registration.aspx</DependentUpon>
+  </ItemGroup>
   <ItemGroup>
-    <Content Include="MasterPage\PatientSite.Master" />
-    <Content Include="MasterPage\Site.Master" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
-    <Folder Include="Models\" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
-        <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61559/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
-        </WebProjectProperties>
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -410,10 +312,4 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
-        </WebProjectProperties>
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>
