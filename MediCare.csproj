@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Database\Medicine+Food.sql" />
     <Content Include="Database\Users+Doctors+Patients.sql" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -78,6 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Database\lebanese_food_reference.pdf" />
+    <Content Include="Database\lebanese_food_database.csv" />
+    <Content Include="Database\lebanon_drugs_database.csv" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
