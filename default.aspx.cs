@@ -5,7 +5,9 @@ using System.IO;
 using System.Web;
 using System.Web.UI;
 
-//download hash
+// emlt download la BCrypt endi w nzed bel .config
+// eza 3ndkn ma chta8al futu aa package manager console w ktbu hydi
+// Install-Package BCrypt.Net-Next
 
 namespace MediCare
 {
@@ -125,7 +127,7 @@ namespace MediCare
             conn.Close();
 
             Response.Write("<script>alert('Registration successful. You can now sign in.')</script>");
-            Response.Redirect("Pages/Account/Login.aspx")
+            Response.Redirect("Pages/Account/Login.aspx");
         }
 
         private bool ValidatePatient(out string errorMessage)
