@@ -1,9 +1,4 @@
-﻿<%@ Page Title="Medications – MediCare" 
-    Language="C#" 
-    MasterPageFile="~/MasterPage/PatientSite.Master" 
-    AutoEventWireup="true" 
-    CodeBehind="Medications.aspx.cs" 
-    Inherits="MediCare.Pages.Patient.Medications" %>
+﻿<%@ Page Title="Medications – MediCare" Language="C#" MasterPageFile="~/MasterPage/PatientSite.Master" AutoEventWireup="true" CodeBehind="Medications.aspx.cs" Inherits="MediCare.Pages.Patient.Medications" %>
 
 <asp:Content ID="HeadExtra" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" href="/css/medications.css" />
@@ -27,7 +22,20 @@
                 <p class="med-page-header__sub">Manage your prescriptions and personal medications</p>
             </div>
         </div>
-        
+        <div class="med-page-header__right">
+            <div class="med-header-stat">
+                <span class="med-header-stat__num">3</span>
+                <span class="med-header-stat__label">Active</span>
+            </div>
+            <div class="med-header-stat">
+                <span class="med-header-stat__num">1</span>
+                <span class="med-header-stat__label">Pending</span>
+            </div>
+            <div class="med-header-stat">
+                <span class="med-header-stat__num">2</span>
+                <span class="med-header-stat__label">Own Meds</span>
+            </div>
+        </div>
     </div>
 
     <!-- ══════════════════════════════════════
@@ -48,6 +56,9 @@
                         <h2 class="med-card__title">Approved Medications</h2>
                         <p class="med-card__subtitle">Prescribed by your doctor</p>
                     </div>
+                </div>
+                <div class="med-badge med-badge--green">
+                    <i class="fa-solid fa-circle-check"></i> 3 Active
                 </div>
             </div>
 
@@ -124,7 +135,7 @@
 
         <!-- Footer Button -->
         <div class="med-card__footer">
-            <a href="Search.aspx" class="med-btn med-btn--primary">
+            <a href="/Pages/Patient/SearchMedication.aspx" class="med-btn med-btn--primary">
                 <i class="fa-solid fa-plus"></i>
                 Add New Medication
             </a>
@@ -144,57 +155,66 @@
                         <p class="med-card__subtitle">Self-reported medications</p>
                     </div>
                 </div>
+                <div class="med-badge med-badge--blue">
+                    <i class="fa-solid fa-list"></i> 2 Entries
+                </div>
             </div>
 
             <!-- Own Meds Table -->
             <div class="med-table-wrap">
-                <asp:GridView ID="tblOwn" runat="server"
-                    CssClass="med-grid"
-                    AutoGenerateColumns="False"
-                    ShowHeader="True"
-                    GridLines="None">
-
-                    <Columns>
-                        <asp:TemplateField HeaderText="">
-                            <HeaderTemplate>
-                                <span><i class="fa-solid fa-capsules"></i> Medication</span>
-                            </HeaderTemplate>
-                            <ItemTemplate>
+                <table class="med-grid" id="tblOwn">
+                    <thead>
+                        <tr class="med-grid-header">
+                            <th><span><i class="fa-solid fa-capsules"></i> Medication</span></th>
+                            <th>Dosage</th>
+                            <th>Frequency</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="med-grid-row">
+                            <td>
                                 <div class="med-grid-pill">
                                     <div class="med-pill-dot med-pill-dot--blue"></div>
-                                    <span class="med-grid-name"><%# Eval("Medication") %></span>
+                                    <span class="med-grid-name">Vitamin D3</span>
                                 </div>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
-                        <asp:BoundField DataField="Dosage" HeaderText="Dosage"
-                            ItemStyle-CssClass="med-grid-cell" />
-
-                        <asp:BoundField DataField="Frequency" HeaderText="Frequency"
-                            ItemStyle-CssClass="med-grid-cell" />
-
-                        <asp:TemplateField HeaderText="Status">
-                            <ItemTemplate>
-                                <span class='<%# Eval("StatusCssClass") %>'>
-                                    <i class='<%# Eval("StatusIcon") %>'></i>
-                                    <%# Eval("StatusText") %>
+                            </td>
+                            <td class="med-grid-cell">1000 IU</td>
+                            <td class="med-grid-cell">Once daily</td>
+                            <td>
+                                <span class="med-status-badge med-status-badge--orange">
+                                    <i class="fa-solid fa-clock"></i> Pending
                                 </span>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="">
-                            <ItemTemplate>
+                            </td>
+                            <td>
                                 <button class="med-delete-btn" onclick="deleteOwnRow(this)" title="Delete">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-
-                    <HeaderStyle CssClass="med-grid-header" />
-                    <RowStyle CssClass="med-grid-row" />
-                    <AlternatingRowStyle CssClass="med-grid-row med-grid-row--alt" />
-                </asp:GridView>
+                            </td>
+                        </tr>
+                        <tr class="med-grid-row med-grid-row--alt">
+                            <td>
+                                <div class="med-grid-pill">
+                                    <div class="med-pill-dot med-pill-dot--blue"></div>
+                                    <span class="med-grid-name">Omega-3</span>
+                                </div>
+                            </td>
+                            <td class="med-grid-cell">500mg</td>
+                            <td class="med-grid-cell">Twice daily</td>
+                            <td>
+                                <span class="med-status-badge med-status-badge--green">
+                                    <i class="fa-solid fa-circle-check"></i> Approved
+                                </span>
+                            </td>
+                            <td>
+                                <button class="med-delete-btn" onclick="deleteOwnRow(this)" title="Delete">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <!-- Empty state -->
                 <div class="med-empty-state" id="emptyOwn" style="display:none;">
@@ -211,13 +231,18 @@
                     <span>Request doctor approval</span>
                 </div>
                 <div class="med-approval-bar__controls">
-                    <a href="Search.aspx" class="med-btn med-btn--teal">
+                    <select id="ddlDoctor" class="med-select">
+                        <option value="">Select Doctor...</option>
+                        <option value="1">Dr. Ahmad Karimi</option>
+                        <option value="2">Dr. Sara Hassan</option>
+                        <option value="3">Dr. Karim Mansour</option>
+                    </select>
+                    <button class="med-btn med-btn--teal" onclick="sendApprovalRequest()" type="button">
                         <i class="fa-solid fa-paper-plane"></i>
-                        Find Doctor
-                    </a>
+                        Send Request
+                    </button>
                 </div>
             </div>
-
 
             <div id="requestMsg" class="med-inline-msg" style="display:none; margin: 0 26px 16px;"></div>
 
@@ -229,7 +254,6 @@
          CUSTOM MEDICATION COLLAPSIBLE CARD
     ══════════════════════════════════════ -->
     <div class="med-card med-card--collapsible">
-        <!-- Keep header as plain HTML so JS toggle works -->
         <div class="med-card__header med-card__header--clickable"
              id="btnToggleCustom"
              onclick="toggleCustomForm()"
@@ -257,62 +281,77 @@
 
                 <div class="med-form-row">
                     <div class="med-form-group">
-                        <label class="med-label">Medication Name <span class="med-required">*</span></label>
-                        <asp:TextBox ID="txtMedName" runat="server" CssClass="med-input" />
+                        <label class="med-label">
+                            <i class="fa-solid fa-pills"></i>
+                            Medication Name <span class="med-required">*</span>
+                        </label>
+                        <input type="text" id="txtMedName" class="med-input" placeholder="e.g. Vitamin D3" />
+                        <span class="med-error" id="errMedName" style="display:none;">Medication name is required.</span>
                     </div>
                     <div class="med-form-group">
-                        <label class="med-label">Dosage <span class="med-required">*</span></label>
-                        <asp:TextBox ID="txtDosage" runat="server" CssClass="med-input" />
-                    </div>
-                </div>
-
-                <div class="med-form-row">
-                    <div class="med-form-group">
-                        <label class="med-label">Frequency <span class="med-required">*</span></label>
-                        <asp:DropDownList ID="ddlFrequency" runat="server" CssClass="med-input med-select-inline">
-                            <asp:ListItem Text="Select frequency..." Value="" />
-                            <asp:ListItem Text="Once daily" />
-                            <asp:ListItem Text="Twice daily" />
-                            <asp:ListItem Text="Three times daily" />
-                            <asp:ListItem Text="Every 8 hours" />
-                            <asp:ListItem Text="As needed" />
-                            <asp:ListItem Text="Weekly" />
-                        </asp:DropDownList>
-                    </div>
-                    <div class="med-form-group">
-                        <label class="med-label">Start Date</label>
-                        <asp:TextBox ID="txtStartDate" runat="server" CssClass="med-input" TextMode="Date" />
-                    </div>
-                    <div class="med-form-group">
-                        <label class="med-label">End Date</label>
-                        <asp:TextBox ID="txtEndDate" runat="server" CssClass="med-input" TextMode="Date" />
+                        <label class="med-label">
+                            <i class="fa-solid fa-weight-scale"></i>
+                            Dosage <span class="med-required">*</span>
+                        </label>
+                        <input type="text" id="txtDosage" class="med-input" placeholder="e.g. 500mg" />
+                        <span class="med-error" id="errDosage" style="display:none;">Dosage is required.</span>
                     </div>
                 </div>
 
                 <div class="med-form-row">
                     <div class="med-form-group">
-                        <label class="med-label">Pill Count <span class="med-required">*</span></label>
-                        <asp:TextBox ID="txtPillCount" runat="server" CssClass="med-input" TextMode="Number" />
+                        <label class="med-label">
+                            <i class="fa-solid fa-clock"></i>
+                            Frequency <span class="med-required">*</span>
+                        </label>
+                        <select id="ddlFrequency" class="med-input med-select-inline">
+                            <option value="">Select frequency...</option>
+                            <option>Once daily</option>
+                            <option>Twice daily</option>
+                            <option>Three times daily</option>
+                            <option>Every 8 hours</option>
+                            <option>As needed</option>
+                            <option>Weekly</option>
+                        </select>
+                        <span class="med-error" id="errFrequency" style="display:none;">Frequency is required.</span>
+                    </div>
+                    <div class="med-form-group">
+                        <label class="med-label">
+                            <i class="fa-solid fa-calendar-day"></i>
+                            Start Date
+                        </label>
+                        <input type="date" id="txtStartDate" class="med-input" />
+                    </div>
+                    <div class="med-form-group">
+                        <label class="med-label">
+                            <i class="fa-solid fa-calendar-xmark"></i>
+                            End Date
+                        </label>
+                        <input type="date" id="txtEndDate" class="med-input" />
                     </div>
                 </div>
 
                 <div class="med-form-row med-form-row--full">
                     <div class="med-form-group med-form-group--full">
-                        <label class="med-label">Notes <small>(optional)</small></label>
-                        <asp:TextBox ID="txtNotes" runat="server" CssClass="med-input med-textarea" TextMode="MultiLine" Rows="3" />
+                        <label class="med-label">
+                            <i class="fa-solid fa-note-sticky"></i>
+                            Notes <small>(optional)</small>
+                        </label>
+                        <textarea id="txtNotes" class="med-input med-textarea" rows="3" placeholder="Any additional notes..."></textarea>
                     </div>
                 </div>
 
                 <div class="med-form-footer">
-                    <asp:Label ID="lblCustomMsg" runat="server" CssClass="med-inline-msg" Visible="false"></asp:Label>
-                    <asp:Button ID="btnSaveCustomMed" runat="server" CssClass="med-btn med-btn--save"
-                        Text="Save Medication" />
+                    <div id="customMsg" class="med-inline-msg" style="display:none;"></div>
+                    <button type="button" class="med-btn med-btn--save" onclick="saveCustomMed()">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Medication
+                    </button>
                 </div>
 
             </div>
         </div>
     </div>
-
 
 </div>
 
@@ -501,5 +540,4 @@
 })();
 </script>
 
-    </div>
 </asp:Content>

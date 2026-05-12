@@ -29,70 +29,54 @@
 
     window.filterNutritionPlan = function () {
 
-        var filter = document.getElementById('ddlNutFilter').value.toLowerCase();
-        var caloriesInput = document.getElementById('txtCaloriesFilter').value;
-
-        var maxCalories = parseInt(caloriesInput);
+        var filter = document.getElementById('ddlNutFilter').value;
 
         var rows = document.querySelectorAll(
-            '#tblBreakfast tbody tr,' +
-            '#tblLunch tbody tr,' +
+            '#tblBreakfast tbody tr, ' +
+            '#tblLunch tbody tr, ' +
             '#tblSnack tbody tr'
         );
 
         rows.forEach(function (row) {
 
-            var tds = row.querySelectorAll('td');
-
-            var calories = parseInt(tds[2].textContent);
-
-            var protein = parseInt(tds[3].textContent);
-            var carbs = parseInt(tds[4].textContent);
-            var fiber = parseInt(tds[5].textContent);
-            var fat = parseInt(tds[6].textContent);
-
-            var matchesNutrition = true;
-            var matchesCalories = true;
-
-            // CALORIES FILTER
-            if (!isNaN(maxCalories)) {
-                matchesCalories = calories <= maxCalories;
+            if (!filter) {
+                row.style.display = '';
+                return;
             }
 
-            // NUTRITION FILTER
+            // Get numeric values from table cells
+            var calories = parseInt(row.children[2].textContent);
+            var protein = parseInt(row.children[3].textContent);
+            var carbs = parseInt(row.children[4].textContent);
+            var fiber = parseInt(row.children[5].textContent);
+            var fat = parseInt(row.children[6].textContent);
+
+            var show = false;
+
             switch (filter) {
 
-                case "highprotein":
-                    matchesNutrition = protein > 10;
+                case 'highprotein':
+                    show = protein > 10;
                     break;
 
-                case "highfiber":
-                    matchesNutrition = fiber > 5;
+                case 'lowcarb':
+                    show = carbs < 15;
                     break;
 
-                case "highcarb":
-                    matchesNutrition = carbs > 20;
+                case 'highfiber':
+                    show = fiber > 5;
                     break;
 
-                case "highfat":
-                    matchesNutrition = fat > 10;
+                case 'lowfat':
+                    show = fat < 8;
                     break;
 
-                case "lowcal":
-                    matchesNutrition = calories < 200;
+                case 'lowcal':
+                    show = calories < 200;
                     break;
-
-                default:
-                    matchesNutrition = true;
             }
 
-            // SHOW / HIDE
-            if (matchesNutrition && matchesCalories) {
-                row.style.display = "";
-            }
-            else {
-                row.style.display = "none";
-            }
+            row.style.display = show ? '' : 'none';
         });
     };
 
