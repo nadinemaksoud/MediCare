@@ -72,20 +72,16 @@
     <Content Include="css\mealCalculator.css" />
     <Content Include="css\medications.css" />
     <Content Include="css\nutritions.css" />
-    <Content Include="css\profile.css" />
     <Content Include="css\search.css" />
-    <Content Include="Database\Medicine+Food.sql" />
-    <Content Include="Database\Users+Doctors+Patients.sql" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="js\dashboard.js" />
     <Content Include="js\default.js" />
     <Content Include="js\mealCalculator.js" />
     <Content Include="js\Nutritions.js" />
-    <Content Include="js\profile.js" />
     <Content Include="js\search.js" />
     <Content Include="Pages\Account\Login.aspx" />
-    <Content Include="Pages\Patient\PatientProfile.aspx" />
+    <Content Include="Pages\Account\Profile.aspx" />
     <Content Include="Pages\Account\Registration.aspx" />
     <Content Include="Pages\Admin\Dashboard.aspx" />
     <Content Include="Pages\Admin\FoodCatalog.aspx" />
@@ -97,6 +93,7 @@
     <Content Include="Pages\Doctor\ManageNutrition.aspx" />
     <Content Include="Pages\Doctor\PatientList.aspx" />
     <Content Include="Pages\Patient\Dashboard.aspx" />
+    <Content Include="Pages\Patient\MealCalculator.aspx" />
     <Content Include="Pages\Patient\Medications.aspx" />
     <Content Include="Pages\Patient\Nutritions.aspx" />
     <Content Include="Pages\Patient\Search.aspx" />
@@ -140,12 +137,12 @@
     <Compile Include="Pages\Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Patient\PatientProfile.aspx.cs">
-      <DependentUpon>PatientProfile.aspx</DependentUpon>
+    <Compile Include="Pages\Account\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Patient\PatientProfile.aspx.designer.cs">
-      <DependentUpon>PatientProfile.aspx</DependentUpon>
+    <Compile Include="Pages\Account\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Account\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
@@ -224,6 +221,13 @@
     <Compile Include="Pages\Patient\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Patient\MealCalculator.aspx.cs">
+      <DependentUpon>MealCalculator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Patient\MealCalculator.aspx.designer.cs">
+      <DependentUpon>MealCalculator.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Patient\Medications.aspx.cs">
       <DependentUpon>Medications.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,9 +261,6 @@
   <ItemGroup>
     <Content Include="MasterPage\Site.Master" />
     <Content Include="MasterPage\PatientSite.Master" />
-    <Content Include="Database\lebanese_food_database.csv" />
-    <Content Include="Database\lebanese_food_reference.pdf" />
-    <Content Include="Database\lebanon_drugs_database.csv" />
     <None Include="packages.config" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
