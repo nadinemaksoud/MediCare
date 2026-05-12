@@ -1,4 +1,8 @@
-﻿<%@ Page Title="Login - Medicare" Language="C#" MasterPageFile="../../MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MediCare.Pages.Account.Login" %>
+﻿<%@ Page Title="Login - Medicare" 
+    Language="C#" 
+    MasterPageFile="../../MasterPage/Site.Master" 
+    AutoEventWireup="true" CodeBehind="Login.aspx.cs" 
+    Inherits="MediCare.Pages.Account.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <section class="mc-auth">
