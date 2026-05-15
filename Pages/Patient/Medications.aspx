@@ -23,7 +23,7 @@
                 <i class="fa-solid fa-pills"></i>
             </div>
             <div>
-                <h1 class="med-page-header__title">Medications</h1>
+                <h1 class="med-page-header__title">My Medications</h1>
                 <p class="med-page-header__sub">Manage your prescriptions and personal medications</p>
             </div>
         </div>
@@ -38,15 +38,15 @@
         <!-- ════════════════════════════
              LEFT CARD — APPROVED MEDICATIONS
         ════════════════════════════ -->
-        <div class="med-card" id="cardApproved">
+        <div class="med-card" id="cardMedications">
             <div class="med-card__header">
                 <div class="med-card__title-group">
                     <div class="med-card__icon med-card__icon--green">
                         <i class="fa-solid fa-clipboard-check"></i>
                     </div>
                     <div>
-                        <h2 class="med-card__title">Approved Medications</h2>
-                        <p class="med-card__subtitle">Prescribed by your doctor</p>
+                        <h2 class="med-card__title">My Medications</h2>
+                        <p class="med-card__subtitle">my planned medications</p>
                     </div>
                 </div>
             </div>
@@ -54,101 +54,14 @@
             <!-- Search Box -->
             <div class="med-search-wrap">
                 <i class="fa-solid fa-magnifying-glass med-search-icon"></i>
-                <input type="text" id="txtSearchApproved" class="med-search-input" placeholder="Search medications..." oninput="filterApprovedGrid(this.value)" />
+                <input type="text" id="txtSearchMedications" class="med-search-input" placeholder="Search medications..." oninput="filterApprovedGrid(this.value)" />
             </div>
 
          
             <!-- GridView -->
-        <div class="med-table-wrap">
-
-            <asp:GridView ID="tblApproved" runat="server"
-                CssClass="med-grid"
-                AutoGenerateColumns="False"
-                ShowHeader="True"
-                GridLines="None">
-
-                <Columns>
-
-                    <asp:TemplateField HeaderText="">
-                        <HeaderTemplate>
-                            <span><i class="fa-solid fa-pills"></i> Medication</span>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <div class="med-grid-pill">
-                                <div class="med-pill-dot med-pill-dot--green"></div>
-                                <span class="med-grid-name"><%# Eval("Medication") %></span>
-                            </div>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <asp:BoundField DataField="Dosage" HeaderText="Dosage"
-                        ItemStyle-CssClass="med-grid-cell" />
-
-                    <asp:BoundField DataField="Frequency" HeaderText="Frequency"
-                        ItemStyle-CssClass="med-grid-cell" />
-
-                    <asp:TemplateField HeaderText="Start">
-                        <ItemTemplate>
-                            <span class="med-grid-cell med-grid-cell--muted">
-                                <%# Eval("StartDate", "{0:yyyy-MM-dd}") %>
-                            </span>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="End">
-                        <ItemTemplate>
-                            <span class="med-grid-cell med-grid-cell--muted">
-                                <%# Eval("EndDate", "{0:yyyy-MM-dd}") %>
-                            </span>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                </Columns>
-
-                <HeaderStyle CssClass="med-grid-header" />
-                <RowStyle CssClass="med-grid-row" />
-                <AlternatingRowStyle CssClass="med-grid-row med-grid-row--alt" />
-
-            </asp:GridView>
-
-            <!-- Empty state (unchanged) -->
-            <div class="med-empty-state" id="emptyApproved" style="display:none;">
-                <div class="med-empty-state__icon">
-                    <i class="fa-solid fa-pills"></i>
-                </div>
-                <p class="med-empty-state__text">No medications found.</p>
-                <p class="med-empty-state__sub">Try a different search term.</p>
-            </div>
-
-        </div>
-
-        <!-- Footer Button -->
-        <div class="med-card__footer">
-            <a href="Search.aspx" class="med-btn med-btn--primary">
-                <i class="fa-solid fa-plus"></i>
-                Add New Medication
-            </a>
-        </div>
-
-        <!-- ════════════════════════════
-             RIGHT CARD — MY OWN MEDICATIONS
-        ════════════════════════════ -->
-        <div class="med-card" id="cardOwn">
-            <div class="med-card__header">
-                <div class="med-card__title-group">
-                    <div class="med-card__icon med-card__icon--blue">
-                        <i class="fa-solid fa-user-nurse"></i>
-                    </div>
-                    <div>
-                        <h2 class="med-card__title">My Own Medications</h2>
-                        <p class="med-card__subtitle">Self-reported medications</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Own Meds Table -->
             <div class="med-table-wrap">
-                <asp:GridView ID="tblOwn" runat="server"
+
+                <asp:GridView ID="tblPatientMedications" runat="server"
                     CssClass="med-grid"
                     AutoGenerateColumns="False"
                     ShowHeader="True"
@@ -157,72 +70,102 @@
                     <Columns>
                         <asp:TemplateField HeaderText="">
                             <HeaderTemplate>
-                                <span><i class="fa-solid fa-capsules"></i> Medication</span>
+                                <span>
+                                    <i class="fa-solid fa-pills"></i>
+                                    Medication
+                                </span>
                             </HeaderTemplate>
+
                             <ItemTemplate>
                                 <div class="med-grid-pill">
-                                    <div class="med-pill-dot med-pill-dot--blue"></div>
-                                    <span class="med-grid-name"><%# Eval("Medication") %></span>
+                                    <div class="med-pill-dot med-pill-dot--green"></div>
+
+                                    <asp:Label ID="lblMedicationName" runat="server"
+                                        CssClass="med-grid-name"
+                                        Text='<%# Eval("Medication") %>'>
+                                    </asp:Label>
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-
-                        <asp:BoundField DataField="Dosage" HeaderText="Dosage"
-                            ItemStyle-CssClass="med-grid-cell" />
-
-                        <asp:BoundField DataField="Frequency" HeaderText="Frequency"
-                            ItemStyle-CssClass="med-grid-cell" />
-
-                        <asp:TemplateField HeaderText="Status">
+                        <asp:TemplateField HeaderText="Pills">
                             <ItemTemplate>
-                                <span class='<%# Eval("StatusCssClass") %>'>
-                                    <i class='<%# Eval("StatusIcon") %>'></i>
-                                    <%# Eval("StatusText") %>
-                                </span>
+                                <asp:Label ID="lblPillCount" runat="server"
+                                    CssClass="med-grid-cell"
+                                    Text='<%# Eval("PillsNumber") %>'>
+                                </asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Dosage">
+                            <ItemTemplate>
+                                <asp:Label ID="lblDosage" runat="server"
+                                    CssClass="med-grid-cell"
+                                    Text='<%# Eval("Dosage") %>'>
+                                </asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Frequency">
+                            <ItemTemplate>
+                                <asp:Label ID="lblFrequency" runat="server"
+                                    CssClass="med-grid-cell"
+                                    Text='<%# Eval("Frequency") %>'>
+                                </asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Start Date">
+                            <ItemTemplate>
+                                <asp:Label ID="lblStartDate" runat="server"
+                                    CssClass="med-grid-cell med-grid-cell--muted"
+                                    Text='<%# Eval("StartDate", "{0:yyyy-MM-dd}") %>'>
+                                </asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="End Date">
+                            <ItemTemplate>
+                                <asp:Label ID="lblEndDate" runat="server"
+                                    CssClass="med-grid-cell med-grid-cell--muted"
+                                    Text='<%# Eval("EndDate", "{0:yyyy-MM-dd}") %>'>
+                                </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="">
-                            <ItemTemplate>
-                                <button class="med-delete-btn" onclick="deleteOwnRow(this)" title="Delete">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </ItemTemplate>
-                        </asp:TemplateField>
                     </Columns>
 
                     <HeaderStyle CssClass="med-grid-header" />
                     <RowStyle CssClass="med-grid-row" />
                     <AlternatingRowStyle CssClass="med-grid-row med-grid-row--alt" />
+
                 </asp:GridView>
 
-                <!-- Empty state -->
-                <div class="med-empty-state" id="emptyOwn" style="display:none;">
-                    <div class="med-empty-state__icon"><i class="fa-solid fa-capsules"></i></div>
-                    <p class="med-empty-state__text">No personal medications added.</p>
-                    <p class="med-empty-state__sub">Use the form below to add your own.</p>
+                <!-- Empty State -->
+                <div class="med-empty-state" id="emptyMedications" style="display:none;">
+
+                    <div class="med-empty-state__icon">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+
+                    <p class="med-empty-state__text">
+                        No medications added yet.
+                    </p>
+
+                    <p class="med-empty-state__sub">
+                        Add medications to keep track of your treatment plan.
+                    </p>
+
                 </div>
+
             </div>
 
-            <!-- Approval Request Bar -->
-            <div class="med-approval-bar">
-                <div class="med-approval-bar__label">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <span>Request doctor approval</span>
-                </div>
-                <div class="med-approval-bar__controls">
-                    <a href="Search.aspx" class="med-btn med-btn--teal">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        Find Doctor
-                    </a>
-                </div>
+            <!-- Footer Button -->
+            <div class="med-card__footer">
+
+                <a href="Search.aspx" class="med-btn med-btn--primary">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Add Medication
+
+                </a>
+
             </div>
-
-
-            <div id="requestMsg" class="med-inline-msg" style="display:none; margin: 0 26px 16px;"></div>
-
-        </div>
-
     </div>
 
     <!-- ══════════════════════════════════════
@@ -293,13 +236,6 @@
                     <div class="med-form-group">
                         <label class="med-label">Pill Count <span class="med-required">*</span></label>
                         <asp:TextBox ID="txtPillCount" runat="server" CssClass="med-input" TextMode="Number" />
-                    </div>
-                </div>
-
-                <div class="med-form-row med-form-row--full">
-                    <div class="med-form-group med-form-group--full">
-                        <label class="med-label">Notes <small>(optional)</small></label>
-                        <asp:TextBox ID="txtNotes" runat="server" CssClass="med-input med-textarea" TextMode="MultiLine" Rows="3" />
                     </div>
                 </div>
 

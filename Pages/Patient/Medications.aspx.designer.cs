@@ -15,22 +15,13 @@ namespace MediCare.Pages.Patient
     {
 
         /// <summary>
-        /// tblApproved control.
+        /// tblPatientMedications control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView tblApproved;
-
-        /// <summary>
-        /// tblOwn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView tblOwn;
+        protected global::System.Web.UI.WebControls.GridView tblPatientMedications;
 
         /// <summary>
         /// txtMedName control.
@@ -85,15 +76,6 @@ namespace MediCare.Pages.Patient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPillCount;
-
-        /// <summary>
-        /// txtNotes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNotes;
 
         /// <summary>
         /// lblCustomMsg control.
