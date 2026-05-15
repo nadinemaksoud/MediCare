@@ -75,8 +75,8 @@
                         <asp:BoundField DataField="Specialization" HeaderText="Specialization" />
                         <asp:TemplateField HeaderText="">
                             <ItemTemplate>
-                                <asp:Button ID="btnRequestApproval" runat="server"
-                                    Text="Request Approval"
+                                <asp:Button ID="btnRequestAppointment" runat="server"
+                                    Text="Request Appointment"
                                     CssClass="sea-btn sea-btn--small sea-btn--blue"
                                     CommandName="RequestApproval"
                                     CommandArgument='<%# Eval("Id") %>' />
@@ -98,16 +98,10 @@
                     CssClass="sea-grid"
                     AutoGenerateColumns="False"
                     ShowHeader="True"
-                    GridLines="None"
-                    OnRowCommand="gvMedicines_RowCommand">
+                    GridLines="None">
                     <Columns>
                         <asp:BoundField DataField="Name" HeaderText="Name" />
                         <asp:BoundField DataField="Description" HeaderText="Description" />
-                        <asp:TemplateField HeaderText="Pills">
-                            <ItemTemplate>
-                                <asp:TextBox ID="txtPillCount" runat="server" CssClass="pill-input" TextMode="Number" Width="60px" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="">
                             <ItemTemplate>
