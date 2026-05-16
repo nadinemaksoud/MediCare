@@ -6,8 +6,10 @@
     Inherits="MediCare.Pages.Patient.PatientProfile" %>
 
 <asp:Content ID="HeadExtra" ContentPlaceHolderID="HeadContent" runat="server">
-    <link rel="stylesheet" href="/css/profile.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<link rel="stylesheet" href="/css/profile.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
 </asp:Content>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -16,7 +18,6 @@
 
     <!-- HEADER -->
     <div class="pro-header">
-
         <div class="pro-header__left">
             <div class="pro-avatar">
                 <i class="fa-solid fa-user"></i>
@@ -24,27 +25,24 @@
 
             <div>
                 <h1 class="pro-title">
-                    <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="lblName" runat="server" />
                 </h1>
-                <p class="pro-subtitle">
-                    Welcome to your profile dashboard
-                </p>
+                <p class="pro-subtitle">Profile Dashboard</p>
             </div>
         </div>
 
-        <div class="pro-role-badge" id="roleBadge">
-            <i class="fa-solid fa-user-shield"></i>
-            Patient
+        <div class="pro-header__actions">
+            <button type="button" id="btnEdit" class="pro-btn pro-btn--outline-light">
+                <i class="fa-solid fa-pen"></i> Edit
+            </button>
         </div>
-
     </div>
 
-    <!-- MAIN GRID -->
+    <!-- GRID -->
     <div class="pro-grid">
 
-        <!-- LEFT -->
+        <!-- ACCOUNT -->
         <div class="pro-card">
-
             <div class="pro-card__header">
                 <h2>Account Information</h2>
             </div>
@@ -53,114 +51,141 @@
 
                 <div class="pro-field">
                     <label>Email</label>
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="input" />
-                </div>
-
-                <div class="pro-field">
-                    <label>Password</label>
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="input" TextMode="Password" />
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="pro-input" />
                 </div>
 
                 <div class="pro-field">
                     <label>Role</label>
-                    <asp:TextBox ID="txtRole" runat="server" CssClass="input" ReadOnly="true" />
+                    <asp:TextBox ID="txtRole" runat="server" CssClass="pro-input" ReadOnly="true" />
                 </div>
 
                 <div class="pro-field">
                     <label>Created At</label>
-                    <asp:TextBox ID="txtCreatedAt" runat="server" CssClass="input" ReadOnly="true" />
+                    <asp:TextBox ID="txtCreatedAt" runat="server" CssClass="pro-input" ReadOnly="true" />
                 </div>
 
             </div>
-
         </div>
 
-        <!-- RIGHT -->
+        <!-- PROFILE -->
         <div class="pro-card">
-
             <div class="pro-card__header">
                 <h2>Profile Information</h2>
             </div>
 
             <div class="pro-card__body">
 
-                <div class="pro-row">
-                    <div class="pro-field">
-                        <label>Full Name</label>
-                        <asp:TextBox ID="txtFullName" runat="server" CssClass="input" />
-                    </div>
-
-                    <div class="pro-field">
-                        <label>Age</label>
-                        <asp:TextBox ID="txtAge" runat="server" CssClass="input" TextMode="Number" />
-                    </div>
+                <div class="pro-field">
+                    <label>Full Name</label>
+                    <asp:TextBox ID="txtFullName" runat="server" CssClass="pro-input" />
                 </div>
 
-                <!-- PATIENT SECTION -->
-                <div id="patientSection">
+                <div class="pro-field">
+                    <label>Age</label>
+                    <asp:TextBox ID="txtAge" runat="server" CssClass="pro-input" TextMode="Number" />
+                </div>
 
-                    <div class="pro-row">
-                        <div class="pro-field">
-                            <label>Height (cm)</label>
-                            <asp:TextBox ID="txtHeight" runat="server" CssClass="input" TextMode="Number" />
-                        </div>
+                <div class="pro-field">
+                    <label>Height (cm)</label>
+                    <asp:TextBox ID="txtHeight" runat="server" CssClass="pro-input" TextMode="Number" />
+                </div>
 
-                        <div class="pro-field">
-                            <label>Weight (kg)</label>
-                            <asp:TextBox ID="txtWeight" runat="server" CssClass="input" TextMode="Number" />
-                        </div>
-                    </div>
+                <div class="pro-field">
+                    <label>Weight (kg)</label>
+                    <asp:TextBox ID="txtWeight" runat="server" CssClass="pro-input" TextMode="Number" />
+                </div>
 
-                    <div class="pro-field">
-                        <label>Disability</label>
-                        <asp:TextBox ID="txtDisability" runat="server" CssClass="input" />
-                    </div>
+                <div class="pro-field">
+                    <label>Blood Type</label>
+                    <asp:DropDownList ID="ddlBloodType" runat="server" CssClass="pro-input">
+                        <asp:ListItem Text="Select..." Value="" />
+                        <asp:ListItem Text="A+" Value="A+" />
+                        <asp:ListItem Text="O+" Value="O+" />
+                        <asp:ListItem Text="B+" Value="B+" />
+                        <asp:ListItem Text="AB+" Value="AB+" />
+                    </asp:DropDownList>
+                </div>
 
-                    <div class="pro-field">
-                        <label>Chronic Disease</label>
-                        <asp:TextBox ID="txtDisease" runat="server" CssClass="input" />
-                    </div>
+                <div class="pro-field">
+                    <label>Chronic Disease</label>
+                    <asp:TextBox ID="txtDisease" runat="server" CssClass="pro-input" />
+                </div>
 
-                    <div class="pro-field">
-                        <label>Family History</label>
-                        <asp:TextBox ID="txtFamilyHistory" runat="server" CssClass="input" TextMode="MultiLine" />
-                    </div>
+                <div class="pro-field">
+                    <label>Disability</label>
+                    <asp:TextBox ID="txtDisability" runat="server" CssClass="pro-input" />
+                </div>
 
-                </div><%-- end patientSection --%>
+                <div class="pro-field">
+                    <label>Family History</label>
+                    <asp:TextBox ID="txtFamilyHistory" runat="server" CssClass="pro-input pro-textarea" TextMode="MultiLine" Rows="3" />
+                </div>
 
-            </div><%-- end pro-card__body --%>
+            </div>
+        </div>
 
-        </div><%-- end pro-card RIGHT --%>
-
-    </div><%-- end pro-grid --%>
+    </div>
 
     <!-- ACTIONS -->
-    <div class="pro-actions">
-
-        <button type="button"
-                class="pro-btn pro-btn--primary"
-                onclick="saveProfile()">
-            <i class="fa-solid fa-floppy-disk"></i>
-            Save Changes
-        </button>
-
-        <button type="button"
-                class="pro-btn pro-btn--gray"
-                onclick="resetProfile()">
-            <i class="fa-solid fa-rotate-left"></i>
-            Reset
-        </button>
-
+    <div class="pro-actions" id="actions">
+        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="pro-btn pro-btn--primary" />
+        <button type="button" id="btnCancel" class="pro-btn pro-btn--gray">Cancel</button>
     </div>
 
-    <!-- MESSAGE -->
-    <div id="profileMsg"
-         class="pro-msg"
-         style="display:none;">
-    </div>
+</div>
 
-</div><%-- end pro-root --%>
+<script>
+    (function () {
 
-<script src="/js/profile.js"></script>
+        const inputs = document.querySelectorAll(".pro-input");
+        const btnEdit = document.getElementById("btnEdit");
+        const btnCancel = document.getElementById("btnCancel");
+        const actions = document.getElementById("actions");
 
-</asp:Content><%--  --%>
+        let original = {};
+
+        function setMode(editable) {
+
+            inputs.forEach(i => {
+                if (editable) {
+                    i.readOnly = false;
+                    i.disabled = false;
+                    i.classList.remove("is-locked");
+                } else {
+                    i.readOnly = true;
+                    i.classList.add("is-locked");
+                }
+            });
+
+            actions.style.display = editable ? "flex" : "none";
+            btnEdit.style.display = editable ? "none" : "inline-flex";
+        }
+
+        function init() {
+            inputs.forEach(i => {
+                original[i.id] = i.value;
+            });
+
+            setMode(false);
+        }
+
+        btnEdit.addEventListener("click", () => {
+            setMode(true);
+        });
+
+        btnCancel.addEventListener("click", () => {
+
+            inputs.forEach(i => {
+                if (original[i.id] !== undefined)
+                    i.value = original[i.id];
+            });
+
+            setMode(false);
+        });
+
+        init();
+
+    })();
+</script>
+
+</asp:Content>

@@ -33,15 +33,6 @@ namespace MediCare.Pages.Patient
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// txtPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
-
-        /// <summary>
         /// txtRole control.
         /// </summary>
         /// <remarks>
@@ -96,13 +87,13 @@ namespace MediCare.Pages.Patient
         protected global::System.Web.UI.WebControls.TextBox txtWeight;
 
         /// <summary>
-        /// txtDisability control.
+        /// ddlBloodType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDisability;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBloodType;
 
         /// <summary>
         /// txtDisease control.
@@ -114,6 +105,15 @@ namespace MediCare.Pages.Patient
         protected global::System.Web.UI.WebControls.TextBox txtDisease;
 
         /// <summary>
+        /// txtDisability control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDisability;
+
+        /// <summary>
         /// txtFamilyHistory control.
         /// </summary>
         /// <remarks>
@@ -121,5 +121,14 @@ namespace MediCare.Pages.Patient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFamilyHistory;
+
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }
