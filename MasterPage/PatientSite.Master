@@ -92,7 +92,7 @@ Inherits="MediCare.MasterPage.PatientSite" %>
                         </div>
 
                         <div class="pn-profile__menu-divider"></div>
-                        <a href="Pages/Account/Profile.aspx" class="pn-menu-item">
+                        <a href="PatientProfile.aspx" class="pn-menu-item">
                             <i class="fa-solid fa-user-pen"></i> Profile
                         </a>
 
