@@ -227,8 +227,10 @@
   <ItemGroup>
     <Content Include="css\dashboard.css" />
     <Content Include="css\default.css" />
+    <Content Include="css\ForgetPassword.css" />
     <Content Include="css\mealCalculator.css" />
     <Content Include="css\medications.css" />
+    <Content Include="css\NewPassword.css" />
     <Content Include="css\nutritions.css" />
     <Content Include="css\profile.css" />
     <Content Include="css\search.css" />
@@ -241,7 +243,9 @@
     <Content Include="Global.asax" />
     <Content Include="js\dashboard.js" />
     <Content Include="js\default.js" />
+    <Content Include="js\ForgetPassword.js" />
     <Content Include="js\mealCalculator.js" />
+    <Content Include="js\NewPassword.js" />
     <Content Include="js\Nutritions.js" />
     <Content Include="js\profile.js" />
     <Content Include="js\search.js" />
