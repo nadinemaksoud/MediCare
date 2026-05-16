@@ -4,103 +4,112 @@ using System.Data.SqlClient;
 
 namespace MediCare.Pages.Account
 {
-    public partial class ResetPassword : System.Web.UI.Page
+    public partial class NewPassword : System.Web.UI.Page
     {
-        //        private readonly string connectionString =
-        //            System.Configuration.ConfigurationManager
-        //            .ConnectionStrings["DefaultConnection"]
-        //            .ConnectionString;
+        private readonly string connectionString =
+            System.Configuration.ConfigurationManager
+            .ConnectionStrings["DefaultConnection"]
+            .ConnectionString;
 
-        //        private string Email
-        //        {
-        //            get { return Request.QueryString["email"]; }
-        //        }
+        private string Email
+        {
+            get { return Request.QueryString["email"]; }
+        }
 
-        //        protected SqlConnection GetConnection()
-        //        {
-        //            return new SqlConnection(connectionString);
-        //        }
+        protected SqlConnection GetConnection()
+        {
+            return new SqlConnection(connectionString);
+        }
 
-        //        protected void Page_Load(object sender, EventArgs e)
-        //        {
-        //            if (string.IsNullOrWhiteSpace(Email))
-        //            {
-        //                Response.Redirect("ForgotPassword.aspx");
-        //                return;
-        //            }
-        //        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                Response.Redirect("ForgotPassword.aspx");
+                return;
+            }
+        }
 
-        //        protected void btnResetPassword_Click(object sender, EventArgs e)
-        //        {
-        //            lblMessage.Visible = true;
+        protected void btnSavePassword_Click(object sender, EventArgs e)
+        {
+            lblNewPwdError.Visible = false;
+            lblConfirmPwdError.Visible = false;
 
-        //            if (!ValidateReset(out string errorMessage))
-        //            {
-        //                lblMessage.Text = errorMessage;
-        //                return;
-        //            }
+            if (!ValidateReset(out string errorMessage))
+            {
+                if (errorMessage.Contains("match"))
+                {
+                    lblConfirmPwdError.Text = errorMessage;
+                    lblConfirmPwdError.Visible = true;
+                }
+                else
+                {
+                    lblNewPwdError.Text = errorMessage;
+                    lblNewPwdError.Visible = true;
+                }
 
-        //            string hash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Text);
+                return;
+            }
 
-        //            using (SqlConnection conn = GetConnection())
-        //            {
-        //                conn.Open();
+            string hash = BCrypt.Net.BCrypt.HashPassword(txtNewPassword.Text);
 
-        //                using (SqlCommand cmd = conn.CreateCommand())
-        //                {
-        //                    cmd.CommandType = CommandType.Text;
+            using (SqlConnection conn = GetConnection())
+            {
+                conn.Open();
 
-        //                    cmd.CommandText =
-        //                    @"UPDATE Users
-        //                      SET PasswordHash = @Pass,
-        //                          ResetCode = NULL,
-        //                          ResetExpiry = NULL,
-        //                          ResetAttempts = 0,
-        //                          ResetLockedUntil = NULL
-        //                      WHERE Email = @Email";
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
 
-        //                    cmd.Parameters.AddWithValue("@Pass", hash);
-        //                    cmd.Parameters.AddWithValue("@Email", Email);
+                    cmd.CommandText = @"
+                        UPDATE Users
+                        SET PasswordHash = @Pass,
+                            ResetCode = NULL,
+                            ResetExpiry = NULL,
+                            ResetAttempts = 0,
+                            ResetLockedUntil = NULL
+                        WHERE Email = @Email";
 
-        //                    int rows = cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@Pass", hash);
+                    cmd.Parameters.AddWithValue("@Email", Email);
 
-        //                    if (rows == 0)
-        //                    {
-        //                        lblMessage.Text = "Invalid email.";
-        //                        return;
-        //                    }
-        //                }
-        //            }
+                    int rows = cmd.ExecuteNonQuery();
 
-        //            lblMessage.ForeColor = System.Drawing.Color.Green;
-        //            lblMessage.Text = "Password reset successful.";
+                    if (rows == 0)
+                    {
+                        lblNewPwdError.Text = "Invalid email.";
+                        lblNewPwdError.Visible = true;
+                        return;
+                    }
+                }
+            }
 
-        //            Response.Redirect("Login.aspx");
-        //        }
+            Response.Redirect("Login.aspx");
+        }
 
-        //        private bool ValidateReset(out string errorMessage)
-        //        {
-        //            errorMessage = null;
+        private bool ValidateReset(out string errorMessage)
+        {
+            errorMessage = null;
 
-        //            if (string.IsNullOrWhiteSpace(txtPassword.Text))
-        //            {
-        //                errorMessage = "Password required.";
-        //                return false;
-        //            }
+            if (string.IsNullOrWhiteSpace(txtNewPassword.Text))
+            {
+                errorMessage = "Password required.";
+                return false;
+            }
 
-        //            if (txtPassword.Text.Length < 8)
-        //            {
-        //                errorMessage = "Min 8 characters.";
-        //                return false;
-        //            }
+            if (txtNewPassword.Text.Length < 8)
+            {
+                errorMessage = "Minimum 8 characters required.";
+                return false;
+            }
 
-        //            if (txtPassword.Text != txtConfirmPassword.Text)
-        //            {
-        //                errorMessage = "Passwords do not match.";
-        //                return false;
-        //            }
+            if (txtNewPassword.Text != txtConfirmPassword.Text)
+            {
+                errorMessage = "Passwords do not match.";
+                return false;
+            }
 
-        //            return true;
-        //        }
+            return true;
+        }
     }
 }
