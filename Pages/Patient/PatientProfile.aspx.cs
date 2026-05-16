@@ -18,7 +18,6 @@ namespace MediCare.Pages.Patient
                 // Load your data but DO NOT change ReadOnly properties here!
                 // The JavaScript will lock the fields on page load.
                 txtEmail.Text = "user@example.com";
-                txtPassword.Text = "dummy";
                 txtFullName.Text = "John Doe";
                 txtAge.Text = "30";
                 // ... load health labels ...
