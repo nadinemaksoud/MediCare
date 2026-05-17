@@ -159,12 +159,9 @@
     <Compile Include="Pages\Admin\UserManagement.aspx.designer.cs">
       <DependentUpon>UserManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Doctor\ConsultationRequests.aspx.cs">
-      <DependentUpon>ConsultationRequests.aspx</DependentUpon>
+    <Compile Include="Pages\Doctor\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Doctor\ConsultationRequests.aspx.designer.cs">
-      <DependentUpon>ConsultationRequests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Doctor\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -234,6 +231,7 @@
   <ItemGroup>
     <Content Include="css\dashboard.css" />
     <Content Include="css\DashboardDc.css" />
+    <Content Include="css\DcSearch.css" />
     <Content Include="css\default.css" />
     <Content Include="css\ForgetPassword.css" />
     <Content Include="css\mealCalculator.css" />
@@ -252,6 +250,7 @@
     <Content Include="Global.asax" />
     <Content Include="js\dashboard.js" />
     <Content Include="js\DashboardDc.js" />
+    <Content Include="js\DcSearch.js" />
     <Content Include="js\default.js" />
     <Content Include="js\ForgetPassword.js" />
     <Content Include="js\mealCalculator.js" />
@@ -269,7 +268,7 @@
     <Content Include="Pages\Admin\FoodCatalog.aspx" />
     <Content Include="Pages\Admin\MedicineCatalog.aspx" />
     <Content Include="Pages\Admin\UserManagement.aspx" />
-    <Content Include="Pages\Doctor\ConsultationRequests.aspx" />
+    <Content Include="Pages\Doctor\Search.aspx" />
     <Content Include="Pages\Doctor\Dashboard.aspx" />
     <Content Include="Pages\Doctor\ManageMedication.aspx" />
     <Content Include="Pages\Doctor\ManageNutrition.aspx" />
