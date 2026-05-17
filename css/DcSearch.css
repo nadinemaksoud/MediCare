@@ -1,0 +1,338 @@
+﻿/* ═══════════════════════════════════════════════════════════════════
+   FILE: SearchLayout.css
+   LOCATION: /Styles/SearchLayout.css
+   Search & Results Section — Unified with Doctor Dashboard Design
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Root ─────────────────────────────────────────────────────── */
+.sea-root {
+    min-height: calc(100vh - var(--mc-nav-h, 60px));
+    background: #F4F7F5;
+    padding: 32px 40px 64px;
+    max-width: 1450px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+    /* Box-sizing normalization */
+    .sea-root *,
+    .sea-root *::before,
+    .sea-root *::after {
+        box-sizing: border-box;
+    }
+
+/* ── 2. Page Header ──────────────────────────────────────────────── */
+.sea-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: linear-gradient(135deg, #0F1D2E 0%, #16855E 100%);
+    border-radius: 22px;
+    padding: 28px 32px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(15,29,46,.25);
+}
+
+    /* Matching decorative background rings from Dashboard */
+    .sea-page-header::before {
+        content: '';
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 280px;
+        height: 280px;
+        background: rgba(255,255,255,.04);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .sea-page-header::after {
+        content: '';
+        position: absolute;
+        bottom: -60px;
+        left: 35%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255,255,255,.03);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+.sea-page-header__left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.sea-page-header__icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,.12);
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+/* ── 3. Toolbar / Search Panel ───────────────────────────────────── */
+.sea-search-panel {
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 260px 1fr 180px;
+    gap: 18px;
+    align-items: end;
+}
+
+/* Inputs & Selects styled after Dashboard UI Elements */
+.sea-select,
+.sea-search-input {
+    width: 100%;
+    height: 46px;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 14px;
+    background: #fff;
+    font-size: 14px;
+    color: #374151;
+    outline: none;
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+
+.sea-select {
+    padding: 0 14px;
+    cursor: pointer;
+}
+
+.sea-search-input-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.sea-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9CA3AF;
+    pointer-events: none;
+    font-size: 16px;
+}
+
+.sea-search-input {
+    padding: 0 14px 0 42px;
+}
+
+    /* Unified Focus States */
+    .sea-select:focus,
+    .sea-search-input:focus {
+        border-color: #1A9E5C;
+        background: #F0FDF4;
+        box-shadow: 0 0 0 3px rgba(26,158,92,.1);
+    }
+
+/* ── 4. Buttons & Badges ─────────────────────────────────────────── */
+.sea-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+    text-decoration: none;
+}
+
+.sea-btn--primary {
+    height: 46px;
+    padding: 0 24px;
+    background: #1A9E5C;
+    border: 1.5px solid #1A9E5C;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(26,158,92,.25);
+}
+
+    .sea-btn--primary:hover {
+        background: #16855E;
+        border-color: #16855E;
+        color: #fff;
+        box-shadow: 0 6px 18px rgba(26,158,92,.35);
+        transform: translateY(-1px);
+    }
+
+    .sea-btn--primary:active {
+        transform: translateY(0);
+    }
+
+/* Messaging alert nodes */
+.sea-inline-msg {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    background: #F0FDF4;
+    border: 1.5px solid #A7F3D0;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #065F46;
+    margin-bottom: 4px;
+}
+
+/* ── 5. Results Structure ────────────────────────────────────────── */
+.sea-results-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.sea-card {
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    overflow: hidden;
+}
+
+.sea-card__header {
+    padding: 22px 28px;
+    border-bottom: 1px solid #F3F4F6;
+    background: linear-gradient(135deg, #F0FDF4, #fff);
+}
+
+/* ── 6. Data Grid Tables ─────────────────────────────────────────── */
+.sea-table-wrap {
+    padding: 16px 28px 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #E5E7EB transparent;
+}
+
+    .sea-table-wrap::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    .sea-table-wrap::-webkit-scrollbar-thumb {
+        background: #E5E7EB;
+        border-radius: 4px;
+    }
+
+.sea-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px; /* Row gaps mirroring timeline elements */
+    font-size: 14px;
+}
+
+    .sea-grid thead th {
+        text-align: left;
+        padding: 12px 16px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: #9CA3AF;
+        border-bottom: 1px solid #F3F4F6;
+    }
+
+    .sea-grid tbody tr {
+        animation: db-slot-in .35s cubic-bezier(.4,0,.2,1) both;
+    }
+
+    .sea-grid td {
+        padding: 14px 16px;
+        background: #FAFAFA;
+        border-top: 1px solid #E5E7EB;
+        border-bottom: 1px solid #E5E7EB;
+        color: #374151;
+        transition: all .2s ease;
+    }
+
+        /* Dynamic row border structuring mimicking schedule slots */
+        .sea-grid td:first-child {
+            border-left: 1px solid #E5E7EB;
+            border-radius: 10px 0 0 10px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .sea-grid td:last-child {
+            border-right: 1px solid #E5E7EB;
+            border-radius: 0 10px 10px 0;
+        }
+
+    /* Interactive item highlights */
+    .sea-grid tbody tr:hover td {
+        background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+        border-top-color: #BFDBFE;
+        border-bottom-color: #BFDBFE;
+        color: #111827;
+    }
+
+        .sea-grid tbody tr:hover td:first-child {
+            border-left-color: #2563EB;
+        }
+
+        .sea-grid tbody tr:hover td:last-child {
+            border-right-color: #BFDBFE;
+        }
+
+/* ── 7. Responsive Breakpoints ───────────────────────────────────── */
+@media (max-width: 1100px) {
+    .sea-search-panel {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+        gap: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sea-root {
+        padding: 20px 16px 48px;
+        gap: 20px;
+    }
+
+    .sea-page-header {
+        padding: 20px;
+    }
+
+    .sea-card__header {
+        padding: 16px;
+    }
+
+    .sea-table-wrap {
+        padding: 12px 16px;
+    }
+
+    .sea-btn--primary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 520px) {
+    .sea-grid {
+        font-size: 13px;
+    }
+
+        .sea-grid thead th,
+        .sea-grid td {
+            padding: 10px 12px;
+        }
+}
