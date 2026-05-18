@@ -300,7 +300,6 @@
     <Content Include="js\PatientList.js" />
     <Content Include="js\profile.js" />
     <Content Include="js\ProfilePatient.js" />
-    <Content Include="js\search.js" />
     <Content Include="MasterPage\PatientSite.Master" />
     <Content Include="MasterPage\Site.Master" />
     <Content Include="Pages\Account\AdminProfile.aspx" />
