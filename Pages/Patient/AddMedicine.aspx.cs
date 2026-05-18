@@ -48,7 +48,7 @@ namespace MediCare.Pages.Patient
                 return;
             }
 
-            // Collect data
+            //Collect data
             string startDate = txtStartDate.Text;
             string endDate = txtEndDate.Text;
             string frequency = ddlFrequency.SelectedValue;
@@ -57,10 +57,10 @@ namespace MediCare.Pages.Patient
             string mealRelation = ddlMealRelation.SelectedValue;
             bool reminder = chkReminder.Checked;
 
-            // TODO: Save to database
-            // Use medicineId to know which medicine was selected
+            //Save to database
+            //Use medicineId to know which medicine was selected
 
-            // Redirect back to search with success message
+            //Redirect back to search with success message
             Response.Redirect($"Search.aspx?msg=Medicine+added+successfully");
         }
 
@@ -69,17 +69,10 @@ namespace MediCare.Pages.Patient
             Response.Redirect("Search.aspx");
         }
 
-        // Temporary static lookup (replace with DB)
+        
         private string GetMedicineNameById(int id)
         {
-            // This should come from your data layer
-            switch (id)
-            {
-                case 101: return "Panadol";
-                case 102: return "Amoxicillin";
-                case 103: return "Ventolin";
-                default: return "Unknown Medicine";
-            }
+            return "Unknown Medicine";
         }
     }
 }

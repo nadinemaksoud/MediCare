@@ -161,60 +161,60 @@
 
 <!-- DESIGN-ONLY JAVASCRIPT -->
 <script>
-(function () {
-    /* Card entrance animation */
-    document.querySelectorAll('.med-card').forEach(function (card, i) {
-        card.style.opacity    = '0';
-        card.style.transform  = 'translateY(22px)';
-        card.style.transition = 'opacity .5s ease, transform .5s ease';
-        card.style.transitionDelay = (i * 100) + 'ms';
-        setTimeout(function () {
-            card.style.opacity   = '1';
-            card.style.transform = 'translateY(0)';
-        }, 60);
-    });
-
-    /* Collapse header keyboard support */
-    var collapseHeader = document.getElementById('btnToggleCustom');
-    if (collapseHeader) {
-        collapseHeader.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                window.toggleCustomForm();
-            }
-        });
-    }
-
-    /* Toggle collapsible custom form */
-    window.toggleCustomForm = function () {
-        var body   = document.getElementById('customFormBody');
-        var arrow  = document.getElementById('collapseArrow');
-        var header = document.getElementById('btnToggleCustom');
-        var isOpen = body.classList.contains('med-collapse-body--open');
-
-        if (isOpen) {
-            body.style.maxHeight = body.scrollHeight + 'px';
-            requestAnimationFrame(function () { body.style.maxHeight = '0px'; });
+    (function () {
+        /* Card entrance animation */
+        document.querySelectorAll('.med-card').forEach(function (card, i) {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(22px)';
+            card.style.transition = 'opacity .5s ease, transform .5s ease';
+            card.style.transitionDelay = (i * 100) + 'ms';
             setTimeout(function () {
-                body.classList.remove('med-collapse-body--open');
-                body.setAttribute('aria-hidden', 'true');
-            }, 350);
-            arrow.classList.remove('med-collapse-arrow--open');
-            header.setAttribute('aria-expanded', 'false');
-        } else {
-            body.classList.add('med-collapse-body--open');
-            body.setAttribute('aria-hidden', 'false');
-            body.style.maxHeight = '0px';
-            requestAnimationFrame(function () {
-                body.style.maxHeight = body.scrollHeight + 'px';
-            });
-            setTimeout(function () { body.style.maxHeight = 'none'; }, 360);
-            arrow.classList.add('med-collapse-arrow--open');
-            header.setAttribute('aria-expanded', 'true');
-        }
-    };
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 60);
+        });
 
-})();
+        /* Collapse header keyboard support */
+        var collapseHeader = document.getElementById('btnToggleCustom');
+        if (collapseHeader) {
+            collapseHeader.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.toggleCustomForm();
+                }
+            });
+        }
+
+        /* Toggle collapsible custom form */
+        window.toggleCustomForm = function () {
+            var body = document.getElementById('customFormBody');
+            var arrow = document.getElementById('collapseArrow');
+            var header = document.getElementById('btnToggleCustom');
+            var isOpen = body.classList.contains('med-collapse-body--open');
+
+            if (isOpen) {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                requestAnimationFrame(function () { body.style.maxHeight = '0px'; });
+                setTimeout(function () {
+                    body.classList.remove('med-collapse-body--open');
+                    body.setAttribute('aria-hidden', 'true');
+                }, 350);
+                arrow.classList.remove('med-collapse-arrow--open');
+                header.setAttribute('aria-expanded', 'false');
+            } else {
+                body.classList.add('med-collapse-body--open');
+                body.setAttribute('aria-hidden', 'false');
+                body.style.maxHeight = '0px';
+                requestAnimationFrame(function () {
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                });
+                setTimeout(function () { body.style.maxHeight = 'none'; }, 360);
+                arrow.classList.add('med-collapse-arrow--open');
+                header.setAttribute('aria-expanded', 'true');
+            }
+        };
+
+    })();
 </script>
 
 </asp:Content>

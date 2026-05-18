@@ -72,8 +72,7 @@
                         AutoGenerateColumns="False"
                         ShowHeader="True"
                         GridLines="None"
-                        EmptyDataText="No doctors found."
-                        OnRowCommand="gvDoctors_RowCommand">
+                        EmptyDataText="No doctors found.">
                         <Columns>
                             <asp:BoundField DataField="Name" HeaderText="Name" />
                             <asp:BoundField DataField="Specialization" HeaderText="Specialization" />
@@ -82,14 +81,10 @@
                                     <div class="sea-actions-cell">
                                         <asp:Button ID="btnConnect" runat="server"
                                             Text="Connect"
-                                            CssClass="sea-btn sea-btn--small sea-btn--blue"
-                                            CommandName="ConnectDoctor"
-                                            CommandArgument='<%# Eval("Id") %>' />
+                                            CssClass="sea-btn sea-btn--small sea-btn--blue" />
                                         <asp:Button ID="btnSendAppointment" runat="server"
                                             Text="Send Appointment"
-                                            CssClass="sea-btn sea-btn--small sea-btn--purple"
-                                            CommandName="OpenDoctorProfile"
-                                            CommandArgument='<%# Eval("Id") %>' />
+                                            CssClass="sea-btn sea-btn--small sea-btn--purple" />
                                     </div>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -109,8 +104,7 @@
                 <div class="sea-table-wrap">
                     <asp:GridView ID="gvMedicines" runat="server" CssClass="sea-grid"
                         AutoGenerateColumns="False" ShowHeader="True" GridLines="None"
-                        EmptyDataText="No medicines found."
-                        OnRowCommand="gvMedicines_RowCommand">
+                        EmptyDataText="No medicines found.">
                         <Columns>
                             <asp:BoundField DataField="Name" HeaderText="Name" />
                             <asp:BoundField DataField="Description" HeaderText="Description" />
