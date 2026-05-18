@@ -36,7 +36,7 @@
          <span style="color:var(--text-muted);font-size:0.75rem"><i class="fa-solid fa-chevron-down" style="color:var(--text-muted);font-size:0.75rem"></i></span>
        </div>
        <div class="mc-dropdown-menu">
-         <a href="Profile.aspx"> <i class="fa-solid fa-user"></i> My Profile</a>
+         <a href="/Pages/Account/AdminProfile.aspx"> <i class="fa-solid fa-user"></i> My Profile</a>
          <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
          <a href="Default.aspx" style="color:#DC2626">  <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
        </div>
@@ -70,17 +70,14 @@
     <div class="mc-toolbar">
       <div class="mc-input-wrap mc-toolbar__search">
         <span class="mc-input-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-       <asp:TextBox ID="txtSearchDoctors" runat="server"
+   <asp:TextBox ID="txtSearchDoctors" runat="server"
     CssClass="mc-input mc-input--icon"
     placeholder="Search doctors by name or specialty"
-    onkeyup="searchDoctors()" />
+    AutoPostBack="true"
+    OnTextChanged="txtSearchDoctors_TextChanged" />
       </div>
-      <asp:DropDownList ID="ddlSpecialties" runat="server"
-    CssClass="mc-select"
-    DataTextField="SpecialtyName"
-    DataValueField="SpecialtyName">
-</asp:DropDownList>
-      <button class="mc-btn mc-btn--outline mc-btn--sm"><i class="fa-solid fa-file-export"></i> Export</button>
+  
+     
     </div>
 
    <!-- Doctors Table -->

@@ -90,7 +90,7 @@
       <asp:Label ID="lblPatientsCount" runat="server"
     CssClass=""
     Style="font-family:var(--font-heading);font-size:1.75rem;line-height:1.1;color:var(--text-primary);"
-    Text="2,847">
+   >
 </asp:Label>
     </div>
   </div>
@@ -115,7 +115,7 @@
       </div>
       <asp:Label ID="lblNewPatients" runat="server"
     Style="font-family:var(--font-heading);font-size:1.75rem;line-height:1.1;color:var(--text-primary);"
-    Text="127">
+   >
 </asp:Label>
     </div>
   </div>
@@ -128,13 +128,14 @@
     <div class="mc-toolbar">
       <div class="mc-input-wrap mc-toolbar__search">
         <span class="mc-input-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <asp:TextBox ID="txtSearchPatients" runat="server"
+     <asp:TextBox ID="txtSearchPatients" runat="server"
     CssClass="mc-input mc-input--icon"
-    placeholder="Search patients by name or condition"
-    onkeyup="searchPatients()" />
+    placeholder="Search patients by name"
+    AutoPostBack="true"
+    OnTextChanged="txtSearchPatients_TextChanged" />
       </div>
     
-      <button class="mc-btn mc-btn--outline mc-btn--sm">  <i class="fa-solid fa-file-export"></i> Export</button>
+     
     </div>
 
     

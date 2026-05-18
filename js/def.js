@@ -68,18 +68,7 @@
     });
 
     /* ── Table search filter ── */
-    const searchInputs = document.querySelectorAll('[data-table-search]');
-    searchInputs.forEach(input => {
-        const targetId = input.dataset.tableSearch;
-        const table = document.getElementById(targetId);
-        if (!table) return;
-        input.addEventListener('input', () => {
-            const q = input.value.toLowerCase().trim();
-            table.querySelectorAll('tbody tr').forEach(row => {
-                row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
-            });
-        });
-    });
+    
 
     /* ── Animate stat numbers (counter) ── */
     function animateCounter(el) {
@@ -101,22 +90,7 @@
     }
 
     // Intersection observer for stat items
-    const statValues = document.querySelectorAll('.mc-stat-item__value, .mc-stat-card__value');
-    if (statValues.length) {
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.4 });
-        statValues.forEach(el => {
-            el.dataset.count = parseFloat(el.textContent.replace(/[^0-9.]/g, ''));
-            io.observe(el);
-        });
-    }
-
+   
     /* ── Fade-up on scroll ── */
     const fadeEls = document.querySelectorAll('.mc-feature-card, .mc-testimonial-card, .mc-stat-item');
     if (fadeEls.length) {
@@ -138,19 +112,7 @@
     }
 
     /* ── Delete row confirmation ── */
-    document.querySelectorAll('[data-delete-row]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (confirm('Are you sure you want to delete this record?')) {
-                const row = btn.closest('tr');
-                if (row) {
-                    row.style.transition = 'opacity 0.3s, transform 0.3s';
-                    row.style.opacity = '0';
-                    row.style.transform = 'translateX(20px)';
-                    setTimeout(() => row.remove(), 300);
-                }
-            }
-        });
-    });
+    
 
     /* ── Active nav link (admin) ── */
     const currentPath = window.location.pathname.toLowerCase();

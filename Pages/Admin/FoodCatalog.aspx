@@ -39,7 +39,7 @@
           <span style="color:var(--text-muted);font-size:0.75rem"><i class="fa-solid fa-chevron-down" style="color:var(--text-muted);font-size:0.75rem"></i></span>
         </div>
         <div class="mc-dropdown-menu">
-          <a href="Profile.aspx"><i class="fa-solid fa-user"></i> My Profile</a>
+          <a href="/Pages/Admin/Profile.aspx"><i class="fa-solid fa-user"></i> My Profile</a>
           <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
           <a href="Default.aspx" style="color:#DC2626"> <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </div>
@@ -74,31 +74,47 @@
     </div>
 
     <!-- Toolbar -->
-    <div class="mc-toolbar">
-      <div class="mc-input-wrap mc-toolbar__search">
-        <span class="mc-input-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-       <asp:TextBox ID="txtSearchFood" runat="server"
-    CssClass="mc-input mc-input--icon"
-    placeholder="Search food items"
-    onkeyup="searchFoodTable()" />
-      </div>
-  
-      <select class="mc-select">
-        <option value="">Sort by</option>
-        <option>Highest Calories</option>
-        <option>Lowest Calories</option>
-        <option>Highest Protein</option>
-        <option>Alphabetical</option>
-      </select>
-       <button class="mc-btn mc-btn--outline mc-btn--sm"><i class="fa-solid fa-file-export"></i> Export</button>
+<div class="mc-toolbar">
+
+    <!-- SEARCH -->
+    <div class="mc-input-wrap mc-toolbar__search">
+        <span class="mc-input-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+
+        <asp:TextBox ID="txtSearchFood" runat="server"
+            CssClass="mc-input mc-input--icon"
+            placeholder="Search food items"
+            AutoPostBack="true"
+            OnTextChanged="txtSearchFood_TextChanged" />
     </div>
 
-   <div class="mc-table-wrap">
+    <!-- SORT -->
+    <asp:DropDownList ID="ddlSortFood" runat="server"
+        CssClass="mc-select"
+        AutoPostBack="true"
+        OnSelectedIndexChanged="ddlSortFood_SelectedIndexChanged">
+
+        <asp:ListItem Value="">Sort by</asp:ListItem>
+        <asp:ListItem Value="cal_desc">Highest Calories</asp:ListItem>
+        <asp:ListItem Value="cal_asc">Lowest Calories</asp:ListItem>
+        <asp:ListItem Value="protein">Highest Protein</asp:ListItem>
+        <asp:ListItem Value="az">Alphabetical</asp:ListItem>
+
+    </asp:DropDownList>
+
+   
+
+</div>
+
+<!-- TABLE -->
+<div class="mc-table-wrap">
 
 <asp:GridView ID="gvFood" runat="server"
     AutoGenerateColumns="False"
     CssClass="mc-table"
-    GridLines="None">
+    GridLines="None"
+    DataKeyNames="ID">
 
     <Columns>
 
@@ -110,11 +126,9 @@
             </ItemTemplate>
         </asp:TemplateField>
 
-        
         <asp:TemplateField HeaderText="Description">
             <ItemTemplate>
                 <div style="display:flex;align-items:center;gap:0.6rem">
-                    <span style="font-size:1.2rem"></span>
                     <div>
                         <div style="font-weight:600;font-size:0.9rem;color:var(--text-primary)">
                             <%# Eval("Description") %>
@@ -142,7 +156,6 @@
         <asp:BoundField DataField="VitaminE" HeaderText="Vitamin E" />
         <asp:BoundField DataField="VitaminD" HeaderText="Vitamin D" />
 
-       
         <asp:TemplateField HeaderText="Actions">
             <ItemTemplate>
 
@@ -154,7 +167,7 @@
 
                     <asp:Button ID="btnDelete" runat="server"
                         CssClass="mc-btn mc-btn--danger mc-btn--sm"
-                        Text=" "
+                        Text="Delete"
                         CommandArgument='<%# Eval("ID") %>' />
 
                     <i class="fa-solid fa-trash"></i>
