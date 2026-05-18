@@ -145,6 +145,13 @@
     <Compile Include="Pages\Account\PatientProfile.aspx.designer.cs">
       <DependentUpon>PatientProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Patient\AddMedicine.aspx.cs">
+      <DependentUpon>AddMedicine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Patient\AddMedicine.aspx.designer.cs">
+      <DependentUpon>AddMedicine.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\PatientManagement.aspx.cs">
       <DependentUpon>PatientManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -301,11 +308,9 @@
     <Content Include="js\ManageNutrition.js" />
     <Content Include="js\mealCalculator.js" />
     <Content Include="js\NewPassword.js" />
-    <Content Include="js\Nutritions.js" />
     <Content Include="js\PatientList.js" />
     <Content Include="js\profile.js" />
     <Content Include="js\ProfilePatient.js" />
-    <Content Include="js\search.js" />
     <Content Include="MasterPage\PatientSite.Master" />
     <Content Include="MasterPage\Site.Master" />
     <Content Include="Pages\Account\AdminProfile.aspx" />
@@ -324,6 +329,7 @@
     <Content Include="Pages\Doctor\ManageMedication.aspx" />
     <Content Include="Pages\Doctor\ManageNutrition.aspx" />
     <Content Include="Pages\Doctor\PatientList.aspx" />
+    <Content Include="Pages\Patient\AddMedicine.aspx" />
     <Content Include="Pages\Patient\Chat.aspx" />
     <Content Include="Pages\Patient\Dashboard.aspx" />
     <Content Include="Pages\Patient\Medications.aspx" />

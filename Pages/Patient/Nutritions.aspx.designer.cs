@@ -51,6 +51,15 @@ namespace MediCare.Pages.Patient
         protected global::System.Web.UI.WebControls.TextBox txtFat;
 
         /// <summary>
+        /// lblSearchMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearchMsg;
+
+        /// <summary>
         /// btnSearchFoods control.
         /// </summary>
         /// <remarks>
@@ -123,6 +132,15 @@ namespace MediCare.Pages.Patient
         protected global::System.Web.UI.WebControls.TextBox txtMyFat;
 
         /// <summary>
+        /// lblPlanMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPlanMsg;
+
+        /// <summary>
         /// btnSaveMyPlan control.
         /// </summary>
         /// <remarks>
@@ -177,6 +195,15 @@ namespace MediCare.Pages.Patient
         protected global::System.Web.UI.WebControls.TextBox txtFoodFat;
 
         /// <summary>
+        /// lblFoodMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFoodMsg;
+
+        /// <summary>
         /// btnSaveFood control.
         /// </summary>
         /// <remarks>
@@ -184,5 +211,23 @@ namespace MediCare.Pages.Patient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSaveFood;
+
+        /// <summary>
+        /// cardCustomFoods control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cardCustomFoods;
+
+        /// <summary>
+        /// gvCustomFoods control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCustomFoods;
     }
 }

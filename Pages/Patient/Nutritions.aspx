@@ -29,11 +29,8 @@
         </div>
     </div>
 
-    <!-- =========================
-         SMART FOOD SEARCH
-    ========================== -->
+    <!-- SMART FOOD SEARCH -->
     <div class="nut-card">
-
         <div class="nut-card__header">
             <div class="nut-card__title-group">
                 <div class="nut-card__icon nut-card__icon--purple">
@@ -45,58 +42,45 @@
                 </div>
             </div>
         </div>
-
         <div class="nut-custom-form">
-
             <div class="nut-form-row">
-
                 <div class="nut-form-group">
                     <label class="nut-label">Calories</label>
                     <asp:TextBox ID="txtCalories" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Protein</label>
                     <asp:TextBox ID="txtProtein" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Carbs</label>
                     <asp:TextBox ID="txtCarbs" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Fat</label>
                     <asp:TextBox ID="txtFat" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
             </div>
-
             <div class="nut-form-footer">
-                <asp:Button ID="btnSearchFoods"
-                    runat="server"
+                <asp:Label ID="lblSearchMsg" runat="server" CssClass="nut-inline-msg" Visible="false" />
+                <asp:Button ID="btnSearchFoods" runat="server"
                     Text="Search Foods"
-                    CssClass="nut-btn nut-btn--primary"/>
+                    CssClass="nut-btn nut-btn--primary"
+                    OnClick="btnSearchFoods_Click" />
             </div>
-
         </div>
     </div>
 
-    <!-- =========================
-         SEARCH RESULTS
-    ========================== -->
+    <!-- SEARCH RESULTS -->
     <div class="nut-card">
-
         <div class="nut-card__header">
             <h2 class="nut-card__title">Search Results</h2>
         </div>
-
-        <asp:GridView ID="gvSearchResults"
-            runat="server"
+        <asp:GridView ID="gvSearchResults" runat="server"
             CssClass="nut-grid"
             AutoGenerateColumns="False"
-            GridLines="None">
-
+            GridLines="None"
+            EmptyDataText="No foods found. Try adjusting your search.">
             <Columns>
                 <asp:BoundField DataField="Name" HeaderText="Food" />
                 <asp:BoundField DataField="Calories" HeaderText="Calories" />
@@ -104,16 +88,11 @@
                 <asp:BoundField DataField="Carbs" HeaderText="Carbs" />
                 <asp:BoundField DataField="Fat" HeaderText="Fat" />
             </Columns>
-
         </asp:GridView>
-
     </div>
 
-    <!-- =========================
-         NUTRITION PLAN (DOCTOR + PATIENT)
-    ========================== -->
+    <!-- NUTRITION PLAN (DOCTOR + PATIENT) -->
     <div class="nut-card">
-
         <div class="nut-card__header">
             <div class="nut-card__title-group">
                 <div class="nut-card__icon nut-card__icon--green">
@@ -127,44 +106,24 @@
                 </div>
             </div>
         </div>
-
-        <asp:GridView ID="gvNutritionPlan"
-            runat="server"
+        <asp:GridView ID="gvNutritionPlan" runat="server"
             CssClass="nut-grid"
             AutoGenerateColumns="False"
-            GridLines="None">
-
+            GridLines="None"
+            EmptyDataText="No nutrition plan available.">
             <Columns>
-
                 <asp:BoundField DataField="Source" HeaderText="Type" />
                 <asp:BoundField DataField="Calories" HeaderText="Calories" />
                 <asp:BoundField DataField="Protein" HeaderText="Protein" />
                 <asp:BoundField DataField="Carbs" HeaderText="Carbs" />
                 <asp:BoundField DataField="Fiber" HeaderText="Fiber" />
                 <asp:BoundField DataField="Fat" HeaderText="Fat" />
-
-                <asp:TemplateField HeaderText="Action">
-                    <ItemTemplate>
-                        <asp:Button ID="btnUsePlan"
-                            runat="server"
-                            Text="Use Plan"
-                            CssClass="nut-btn nut-btn--small nut-btn--primary"
-                            CommandName="UsePlan"
-                            CommandArgument='<%# Eval("Source") %>' />
-                    </ItemTemplate>
-                </asp:TemplateField>
-
             </Columns>
-
         </asp:GridView>
-
     </div>
 
-    <!-- =========================
-         PATIENT PLAN EDITOR
-    ========================= -->
+    <!-- MY NUTRITION PLAN EDITOR -->
     <div class="nut-card">
-
         <div class="nut-card__header">
             <div class="nut-card__title-group">
                 <div class="nut-card__icon nut-card__icon--blue">
@@ -176,98 +135,102 @@
                 </div>
             </div>
         </div>
-
         <div class="nut-custom-form">
-
             <div class="nut-form-row">
-
                 <div class="nut-form-group">
                     <label class="nut-label">Calories</label>
                     <asp:TextBox ID="txtMyCalories" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Protein</label>
                     <asp:TextBox ID="txtMyProtein" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Carbs</label>
                     <asp:TextBox ID="txtMyCarbs" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Fiber</label>
                     <asp:TextBox ID="txtMyFiber" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Fat</label>
                     <asp:TextBox ID="txtMyFat" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
             </div>
-
             <div class="nut-form-footer">
-
-                <asp:Button ID="btnSaveMyPlan"
-                    runat="server"
+                <asp:Label ID="lblPlanMsg" runat="server" CssClass="nut-inline-msg" Visible="false" />
+                <asp:Button ID="btnSaveMyPlan" runat="server"
                     Text="Save My Plan"
                     CssClass="nut-btn nut-btn--primary"
                     OnClick="btnSaveMyPlan_Click" />
-
             </div>
-
         </div>
     </div>
-    <!-- =========================
-         ADD CUSTOM FOOD
-    ========================== -->
-    <div class="nut-card">
 
+    <!-- ADD CUSTOM FOOD -->
+    <div class="nut-card">
         <div class="nut-card__header">
             <h2 class="nut-card__title">Add Custom Food</h2>
         </div>
-
         <div class="nut-custom-form">
-
             <div class="nut-form-row">
-
                 <div class="nut-form-group">
                     <label class="nut-label">Food Name</label>
                     <asp:TextBox ID="txtFoodName" runat="server" CssClass="nut-input" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Calories</label>
                     <asp:TextBox ID="txtFoodCalories" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Protein</label>
                     <asp:TextBox ID="txtFoodProtein" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Carbs</label>
                     <asp:TextBox ID="txtFoodCarbs" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
                 <div class="nut-form-group">
                     <label class="nut-label">Fat</label>
                     <asp:TextBox ID="txtFoodFat" runat="server" CssClass="nut-input" TextMode="Number" />
                 </div>
-
             </div>
-
             <div class="nut-form-footer">
-                <asp:Button ID="btnSaveFood"
-                    runat="server"
+                <asp:Label ID="lblFoodMsg" runat="server" CssClass="nut-inline-msg" Visible="false" />
+                <asp:Button ID="btnSaveFood" runat="server"
                     Text="Save Food"
-                    CssClass="nut-btn nut-btn--primary" />
+                    CssClass="nut-btn nut-btn--primary"
+                    OnClick="btnSaveFood_Click" />
             </div>
-
         </div>
+    </div>
+
+    <!-- CUSTOM FOODS LIST -->
+    <div class="nut-card" id="cardCustomFoods" runat="server" visible="false">
+        <div class="nut-card__header">
+            <h2 class="nut-card__title">My Custom Foods</h2>
+        </div>
+        <asp:GridView ID="gvCustomFoods" runat="server"
+            CssClass="nut-grid"
+            AutoGenerateColumns="False"
+            GridLines="None"
+            EmptyDataText="No custom foods added yet.">
+            <Columns>
+                <asp:BoundField DataField="Name" HeaderText="Food" />
+                <asp:BoundField DataField="Calories" HeaderText="Calories" />
+                <asp:BoundField DataField="Protein" HeaderText="Protein" />
+                <asp:BoundField DataField="Carbs" HeaderText="Carbs" />
+                <asp:BoundField DataField="Fat" HeaderText="Fat" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnDeleteFood" runat="server"
+                            Text="Delete"
+                            CssClass="nut-btn nut-btn--delete" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
     </div>
 
 </div>
