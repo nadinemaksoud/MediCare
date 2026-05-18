@@ -132,6 +132,15 @@ namespace MediCare.Patient
         protected global::System.Web.UI.WebControls.Label lblDoseCount;
 
         /// <summary>
+        /// dpmArc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dpmArc;
+
+        /// <summary>
         /// lblDosePct control.
         /// </summary>
         /// <remarks>
@@ -159,13 +168,13 @@ namespace MediCare.Patient
         protected global::System.Web.UI.WebControls.Label lblDoseSummary;
 
         /// <summary>
-        /// GridView1 control.
+        /// gvInventory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView gvInventory;
 
         /// <summary>
         /// gvDoctors control.
