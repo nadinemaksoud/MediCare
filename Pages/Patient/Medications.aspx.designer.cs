@@ -15,13 +15,40 @@ namespace MediCare.Pages.Patient
     {
 
         /// <summary>
-        /// tblPatientMedications control.
+        /// txtSearchApproved control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView tblPatientMedications;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchApproved;
+
+        /// <summary>
+        /// btnSearchApproved control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchApproved;
+
+        /// <summary>
+        /// lblApprovedMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblApprovedMsg;
+
+        /// <summary>
+        /// gvApprovedMedications control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvApprovedMedications;
 
         /// <summary>
         /// txtMedName control.

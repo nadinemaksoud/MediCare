@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace MediCare.Pages.Patient
 {
@@ -13,94 +10,60 @@ namespace MediCare.Pages.Patient
         {
             if (!IsPostBack)
             {
-                LoadPatientMedications();
-                LoadCustomMedications();
+                BindApprovedMedications();
+                
             }
         }
 
-        private void LoadPatientMedications()
+        // =========================
+        // APPROVED MEDICATIONS
+        // =========================
+        private void BindApprovedMedications(string search = "")
         {
-            var data = new List<MedicationVM>
-            {
-                new MedicationVM
-                {
-                    Medication = "Amoxicillin",
-                    PillsNumber = 2,
-                    Dosage = "500mg",
-                    Frequency = "Twice Daily",
-                    StartDate = DateTime.Now.AddDays(-3),
-                    EndDate = DateTime.Now.AddDays(7)
-                },
-                new MedicationVM
-                {
-                    Medication = "Paracetamol",
-                    PillsNumber = 1,
-                    Dosage = "1g",
-                    Frequency = "Every 8 Hours",
-                    StartDate = DateTime.Now.AddDays(-1),
-                    EndDate = DateTime.Now.AddDays(5)
-                },
-                new MedicationVM
-                {
-                    Medication = "Vitamin D",
-                    PillsNumber = 1,
-                    Dosage = "1000 IU",
-                    Frequency = "Once Daily",
-                    StartDate = DateTime.Now.AddDays(-10),
-                    EndDate = DateTime.Now.AddMonths(1)
-                },
-                new MedicationVM
-                {
-                    Medication = "Ibuprofen",
-                    PillsNumber = 2,
-                    Dosage = "400mg",
-                    Frequency = "As needed",
-                    StartDate = DateTime.Now.AddDays(-2),
-                    EndDate = DateTime.Now.AddDays(10)
-                }
-            };
-
-            tblPatientMedications.DataSource = data;
-            tblPatientMedications.DataBind();
+            // TODO: fetch from DB using user ID and search term
+            var approved = GetApprovedMedicationsFromDb(search);
+            gvApprovedMedications.DataSource = approved;
+            gvApprovedMedications.DataBind();
         }
 
-        private void LoadCustomMedications()
+        protected void btnSearchApproved_Click(object sender, EventArgs e)
         {
-            var data = new List<CustomMedicationVM>
-            {
-                new CustomMedicationVM
-                {
-                    Name = "Zinc Supplements",
-                    Dosage = "50mg",
-                    Frequency = "Once daily",
-                    Status = "Active"
-                },
-                new CustomMedicationVM
-                {
-                    Name = "Omega 3",
-                    Dosage = "1000mg",
-                    Frequency = "Twice daily",
-                    Status = "Pending"
-                }
-            };
-
-            // ⚠️ If you don't have a second GridView for custom meds yet,
-            // you can ignore this OR bind later.
-            // Example:
-            // gvCustomMedications.DataSource = data;
-            // gvCustomMedications.DataBind();
+            string query = txtSearchApproved.Text.Trim();
+            BindApprovedMedications(query);
         }
 
+        // =========================
+        // CUSTOM MEDICATIONS
+        // =========================
+        
         protected void btnSaveCustomMed_Click(object sender, EventArgs e)
         {
-            // demo only (no DB)
-            lblCustomMsg.Visible = true;
-            lblCustomMsg.Text = "Medication saved (demo mode)";
+            
         }
 
-        // ===== VIEW MODELS =====
+        protected void btnDeleteCustom_Command(object sender, System.Web.UI.WebControls.CommandEventArgs e)
+        { 
+        }
 
-        public class MedicationVM
+        // =========================
+        // STATIC DEMO DATA (replace with DB)
+        // =========================
+        private List<ApprovedMedicationItem> GetApprovedMedicationsFromDb(string search)
+        {
+            var list = new List<ApprovedMedicationItem>
+            {
+                new ApprovedMedicationItem { Medication = "Panadol", PillsNumber = 2, Dosage = "500mg", Frequency = "Twice daily", StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(20) },
+                new ApprovedMedicationItem { Medication = "Amoxicillin", PillsNumber = 1, Dosage = "250mg", Frequency = "Three times daily", StartDate = DateTime.Now.AddDays(-5), EndDate = DateTime.Now.AddDays(5) }
+            };
+
+            if (!string.IsNullOrWhiteSpace(search))
+                return list.Where(m => m.Medication.ToLower().Contains(search.ToLower())).ToList();
+            return list;
+        }
+
+
+        // Model classes
+        private class ApprovedMedicationItem
         {
             public string Medication { get; set; }
             public int PillsNumber { get; set; }
@@ -108,14 +71,6 @@ namespace MediCare.Pages.Patient
             public string Frequency { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime EndDate { get; set; }
-        }
-
-        public class CustomMedicationVM
-        {
-            public string Name { get; set; }
-            public string Dosage { get; set; }
-            public string Frequency { get; set; }
-            public string Status { get; set; }
         }
     }
 }
