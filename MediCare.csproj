@@ -271,6 +271,7 @@
     <Content Include="css\DcSearch.css" />
     <Content Include="css\default.css" />
     <Content Include="css\DoctorProfile.css" />
+    <Content Include="css\DrMaster.css" />
     <Content Include="css\ForgetPassword.css" />
     <Content Include="css\ManageMedication.css" />
     <Content Include="css\ManageNutrition.css" />
@@ -289,7 +290,6 @@
     <Content Include="Database\lebanon_drugs_database.csv" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="js\DashboardDc.js" />
     <Content Include="js\DcSearch.js" />
     <Content Include="js\def.js" />
     <Content Include="js\default.js" />
