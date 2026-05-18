@@ -215,8 +215,7 @@
             CssClass="nut-grid"
             AutoGenerateColumns="False"
             GridLines="None"
-            EmptyDataText="No custom foods added yet."
-            OnRowCommand="gvCustomFoods_RowCommand">
+            EmptyDataText="No custom foods added yet.">
             <Columns>
                 <asp:BoundField DataField="Name" HeaderText="Food" />
                 <asp:BoundField DataField="Calories" HeaderText="Calories" />
@@ -227,9 +226,7 @@
                     <ItemTemplate>
                         <asp:Button ID="btnDeleteFood" runat="server"
                             Text="Delete"
-                            CssClass="nut-btn nut-btn--delete"
-                            CommandName="DeleteFood"
-                            CommandArgument='<%# Eval("Id") %>' />
+                            CssClass="nut-btn nut-btn--delete" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
