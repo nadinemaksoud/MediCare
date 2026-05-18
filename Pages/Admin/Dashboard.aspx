@@ -1,4 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="MediCare.Pages.Admin.Dashboard" %>
+﻿<%@ Page Title="Admin Dashboard – MediCare"
+    Language="C#"
+    AutoEventWireup="true"
+    CodeBehind="Dashboard.aspx.cs"
+    Inherits="MediCare.Pages.Admin.Dashboard" %>
 
 <!DOCTYPE html>
 <html lang="en">

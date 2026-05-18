@@ -4,7 +4,7 @@ using System.Web.UI.WebControls;
 
 namespace MediCare.Pages.Admin
 {
-    public partial class Dashboard : Page
+    public partial class Dashboard : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -194,13 +194,6 @@
     <Compile Include="Pages\Admin\MedicineCatalog.aspx.designer.cs">
       <DependentUpon>MedicineCatalog.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\UserManagement.aspx.cs">
-      <DependentUpon>UserManagement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Admin\UserManagement.aspx.designer.cs">
-      <DependentUpon>UserManagement.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Doctor\Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,7 +312,6 @@
     <Content Include="Pages\Admin\FoodCatalog.aspx" />
     <Content Include="Pages\Admin\MedicineCatalog.aspx" />
     <Content Include="Pages\Admin\PatientManagement.aspx" />
-    <Content Include="Pages\Admin\UserManagement.aspx" />
     <Content Include="Pages\Doctor\Search.aspx" />
     <Content Include="Pages\Doctor\Dashboard.aspx" />
     <Content Include="Pages\Doctor\ManageMedication.aspx" />
