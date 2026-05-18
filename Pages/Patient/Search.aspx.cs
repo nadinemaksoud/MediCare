@@ -24,8 +24,6 @@ namespace MediCare.Pages.Patient
 
                 string medicineName = row.Cells[0].Text;
 
-                txtMedicineName.Text = medicineName;
-
                 pnlMedicineModal.Visible = true;
             }
         }
@@ -35,19 +33,18 @@ namespace MediCare.Pages.Patient
         }
         protected void btnSaveMedicine_Click(object sender, EventArgs e)
         {
-            string medicineName = txtMedicineName.Text;
             string startDate = txtStartDate.Text;
             string endDate = txtEndDate.Text;
             string frequency = ddlFrequency.SelectedValue;
             string pills = txtPillsCount.Text;
             string time = txtTime.Text;
             string mealRelation = ddlMealRelation.SelectedValue;
-            string notes = txtNotes.Text;
             bool reminder = chkReminder.Checked;
 
             // SAVE TO DATABASE HERE
 
             pnlMedicineModal.Visible = false;
         }
+
     }
 }
