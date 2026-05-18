@@ -286,7 +286,6 @@
     <Content Include="Database\lebanon_drugs_database.csv" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="js\dashboard.js" />
     <Content Include="js\DashboardDc.js" />
     <Content Include="js\DcSearch.js" />
     <Content Include="js\default.js" />
