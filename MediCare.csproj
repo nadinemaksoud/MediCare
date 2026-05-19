@@ -288,12 +288,12 @@
     <Content Include="Database\lebanese_food_database.csv" />
     <Content Include="Database\lebanese_food_reference.pdf" />
     <Content Include="Database\lebanon_drugs_database.csv" />
+    <Content Include="Database\lebanses_drugs_reference.py" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="js\DcSearch.js" />
     <Content Include="js\def.js" />
     <Content Include="js\default.js" />
-    <Content Include="js\DoctorProfile.js" />
     <Content Include="js\ManageMedication.js" />
     <Content Include="js\ManageNutrition.js" />
     <Content Include="js\mealCalculator.js" />
@@ -301,7 +301,6 @@
     <Content Include="js\profile.js" />
     <Content Include="MasterPage\PatientSite.Master" />
     <Content Include="MasterPage\Site.Master" />
-    <Content Include="Pages\Admin\AdminProfile.aspx" />
     <Content Include="Pages\Doctor\DoctorProfile.aspx" />
     <Content Include="Pages\Account\ForgotPassword.aspx" />
     <Content Include="Pages\Account\Login.aspx" />
@@ -329,6 +328,7 @@
     <Content Include="MasterPage\DoctorSite.Master" />
     <Content Include="MasterPage\AdminSite.Master" />
     <None Include="packages.config" />
+    <Content Include="Uploads\Certificates\8aad8f38-f207-4e7b-afc4-57cc7c49fa1e.jpg" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
