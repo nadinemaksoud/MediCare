@@ -7,6 +7,7 @@
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="dp-root" id="dpRoot">
+        <asp:Label ID="lblError" runat="server" CssClass="dp-error" Visible="false" />
 
         <!-- Profile Banner -->
         <div class="dp-banner">

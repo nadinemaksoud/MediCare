@@ -10,6 +10,7 @@ namespace MediCare.Pages.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             EnsureDoctorId();
+            LoadDoctorProfile();
             if (!IsPostBack)
             {
                 ToggleEditMode(false);
@@ -114,42 +115,32 @@ namespace MediCare.Pages.Account
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    string query = @"UPDATE Doctors
-                             SET Specialty = @Specialty,
-                                 Experience = @Experience,
-                                 Department = @Department,
-                                 License = @License,
-                                 PhoneNumber = @Phone,
-                                 Email = @Email,
-                                 ClinicAddress = @ClinicAddress,
-                                 SubSpecialty = @SubSpecialty,
-                                 DepartmentProf = @DepartmentProf,
-                                 Languages = @Languages,
-                                 YearsExperience = @YearsExperience,
-                                 ConsultationFee = @ConsultationFee,
-                                 LicenseProf = @LicenseProf
-                             WHERE DoctorId = @DoctorId";
+                    string query = @"
+                        UPDATE Doctors
+                        SET FullName = @FullName,
+                        PhoneNumber = @PhoneNumber,
+                        Age = @Age,
+                        ClinicAddress = @ClinicAddress,
+                        CertificatePath = @CertificatePath,
+                        Speciality = @Speciality,
+                        Gender = @Gender
+                        WHERE DoctorId = @DoctorId";
+
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        
+
 
                         // Other parameters (kept simple; convert/validate as needed)
-                        cmd.Parameters.AddWithValue("@Specialty", txtSpecialty.Text);
-                        cmd.Parameters.AddWithValue("@Experience", txtExperience.Text);
-                        cmd.Parameters.AddWithValue("@Department", txtDepartment.Text);
-                        cmd.Parameters.AddWithValue("@License", txtLicense.Text);
-                        cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
-                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        cmd.Parameters.AddWithValue("@DoctorId", doctorId);
+                        cmd.Parameters.AddWithValue("@FullName", lblFullName.Text);
+                        cmd.Parameters.AddWithValue("@PhoneNumber", txtPhone.Text);
+                        cmd.Parameters.AddWithValue("@Age", int.TryParse(txtYearsExperience.Text, out var age) ? age : 0);
                         cmd.Parameters.AddWithValue("@ClinicAddress", txtClinicAddress.Text);
-                        cmd.Parameters.AddWithValue("@SubSpecialty", txtSubSpecialty.Text);
-                        cmd.Parameters.AddWithValue("@DepartmentProf", txtDepartmentProf.Text);
-                        cmd.Parameters.AddWithValue("@Languages", txtLanguages.Text);
-                        cmd.Parameters.AddWithValue("@YearsExperience", txtYearsExperience.Text);
-                        cmd.Parameters.AddWithValue("@ConsultationFee", txtConsultationFee.Text);
-                        cmd.Parameters.AddWithValue("@LicenseProf", txtLicenseProf.Text);
-                        // Typed doctor id parameter
-                        cmd.Parameters.Add("@DoctorId", System.Data.SqlDbType.Int).Value = doctorId;
+                        cmd.Parameters.AddWithValue("@CertificatePath", txtLicense.Text);
+                        cmd.Parameters.AddWithValue("@Speciality", txtSpecialty.Text);
+                        cmd.Parameters.AddWithValue("@Gender", txtLanguages.Text); // adjust if you store gender separately
+
 
                         cmd.ExecuteNonQuery();
                     }
@@ -267,6 +258,62 @@ namespace MediCare.Pages.Account
                 gvAvailability.DataBind();
             }
         }
+        private void LoadDoctorProfile()
+        {
+            EnsureDoctorId(); // make sure DoctorId is set
+
+            if (Session["DoctorId"] == null)
+            {
+                lblError.Text = "Doctor session not found. Please log in again.";
+                lblError.Visible = true;
+                return;
+            }
+
+            string connStr = System.Configuration.ConfigurationManager
+                .ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT FullName, PhoneNumber, Age, ClinicAddress, CertificatePath,
+               Speciality, Gender
+        FROM Doctors
+        WHERE DoctorId = @DoctorId", conn))
+            {
+                cmd.Parameters.AddWithValue("@DoctorId", Convert.ToInt32(Session["DoctorId"]));
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        lblFullName.Text = reader["FullName"].ToString();
+                        txtPhone.Text = reader["PhoneNumber"].ToString();
+                        txtEmail.Text = Session["Email"].ToString(); // from login
+                        txtClinicAddress.Text = reader["ClinicAddress"].ToString();
+
+                        txtSpecialty.Text = reader["Speciality"].ToString();
+                        txtDepartment.Text = reader["ClinicAddress"].ToString(); // or another field
+                        txtLicense.Text = reader["CertificatePath"].ToString();
+
+                        // Professional details
+                        txtSubSpecialty.Text = reader["Speciality"].ToString();
+                        txtDepartmentProf.Text = reader["ClinicAddress"].ToString();
+                        txtLanguages.Text = reader["Gender"].ToString(); // adjust if you store languages separately
+                        txtYearsExperience.Text = reader["Age"].ToString(); // or a dedicated field
+                        txtConsultationFee.Text = ""; // add if you have a column
+                        txtLicenseProf.Text = reader["CertificatePath"].ToString();
+
+                        // Avatar initials
+                        if (!string.IsNullOrEmpty(lblFullName.Text))
+                        {
+                            var parts = lblFullName.Text.Split(' ');
+                            lblInitials.Text = string.Join("", parts.Select(p => p[0])).ToUpper();
+                        }
+                    }
+                }
+            }
+        }
+
 
     }
 }
