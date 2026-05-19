@@ -294,7 +294,6 @@
     <Content Include="js\DcSearch.js" />
     <Content Include="js\def.js" />
     <Content Include="js\default.js" />
-    <Content Include="js\DoctorProfile.js" />
     <Content Include="js\ManageMedication.js" />
     <Content Include="js\ManageNutrition.js" />
     <Content Include="js\mealCalculator.js" />
@@ -329,6 +328,7 @@
   <ItemGroup>
     <Content Include="MasterPage\DoctorSite.Master" />
     <None Include="packages.config" />
+    <Content Include="Uploads\Certificates\8aad8f38-f207-4e7b-afc4-57cc7c49fa1e.jpg" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
