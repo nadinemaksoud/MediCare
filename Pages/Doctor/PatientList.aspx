@@ -102,10 +102,12 @@
 
                 <i class="fas fa-search pl-search-wrap__icon"></i>
 
-                <asp:TextBox ID="txtSearch"
-                    runat="server"
-                    CssClass="pl-search-input"
-                    placeholder="Search patients..." />
+          <asp:TextBox ID="txtSearch"
+    runat="server"
+    CssClass="pl-search-input"
+    placeholder="Search patients..."
+    AutoPostBack="true"
+    OnTextChanged="txtSearch_TextChanged" />
 
                 <asp:Button ID="btnClearSearch"
                     runat="server"

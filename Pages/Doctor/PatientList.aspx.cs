@@ -13,7 +13,19 @@ namespace MediCare.Pages.Doctor
             ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+           {
+        //    if (Session["UserId"] == null || Session["Role"] == null)
+        //    {
+        //        Response.Redirect("~/Pages/Account/Login.aspx");
+        //        return;
+        //    }
+
+        //    if (Session["Role"].ToString() != "Doctor")
+        //    {
+        //        Response.Redirect("~/Default.aspx");
+        //        return;
+            //}
+
             if (!IsPostBack)
             {
                 LoadPatients();
@@ -21,9 +33,9 @@ namespace MediCare.Pages.Doctor
             }
         }
 
-        // =========================================================
+        // =====================================================
         // LOAD PATIENTS
-        // =========================================================
+        // =====================================================
         private void LoadPatients()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -34,135 +46,194 @@ namespace MediCare.Pages.Doctor
                         FullName,
                         PhoneNumber,
                         Age,
-                        ChronicDisease,
+                        Gender,
                         BloodType,
-                        Gender
+                        ChronicDisease
                     FROM Patients
-                    ORDER BY PatientId DESC";
+                    WHERE 1 = 1";
 
-                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                // SEARCH
+                if (!string.IsNullOrWhiteSpace(txtSearch.Text))
                 {
-                    DataTable dt = new DataTable();
+                    query += @"
+                        AND (
+                            FullName LIKE @Search
+                            OR ChronicDisease LIKE @Search
+                            OR PhoneNumber LIKE @Search
+                        )";
+                }
 
-                    da.Fill(dt);
+                // GENDER FILTER
+                if (!string.IsNullOrWhiteSpace(ddlGender.SelectedValue))
+                {
+                    query += " AND Gender = @Gender";
+                }
 
-                    // Extra UI columns
-                    dt.Columns.Add("Initials");
+                query += " ORDER BY PatientId DESC";
 
-                    foreach (DataRow row in dt.Rows)
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    if (!string.IsNullOrWhiteSpace(txtSearch.Text))
                     {
-                        row["Initials"] =
-                            GetInitials(row["FullName"].ToString());
+                        cmd.Parameters.AddWithValue(
+                            "@Search",
+                            "%" + txtSearch.Text.Trim() + "%"
+                        );
                     }
 
-                    rptPatients.DataSource = dt;
-                    rptPatients.DataBind();
+                    if (!string.IsNullOrWhiteSpace(ddlGender.SelectedValue))
+                    {
+                        cmd.Parameters.AddWithValue(
+                            "@Gender",
+                            ddlGender.SelectedValue
+                        );
+                    }
 
-                    lblResultsCount.Text =
-                        "Showing " + dt.Rows.Count + " patients";
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
 
-                    pnlEmptyState.Visible = dt.Rows.Count == 0;
+                        da.Fill(dt);
+
+                        dt.Columns.Add("Initials");
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            row["Initials"] =
+                                GetInitials(
+                                    row["FullName"].ToString()
+                                );
+                        }
+
+                        rptPatients.DataSource = dt;
+                        rptPatients.DataBind();
+
+                        lblResultsCount.Text =
+                            "Showing " + dt.Rows.Count + " patients";
+
+                        pnlEmptyState.Visible =
+                            dt.Rows.Count == 0;
+                    }
                 }
             }
         }
 
-        // =========================================================
+        // =====================================================
         // LOAD STATS
-        // =========================================================
+        // =====================================================
         private void LoadStatistics()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn =
+                new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                // Total Patients
                 using (SqlCommand cmd =
-                    new SqlCommand("SELECT COUNT(*) FROM Patients", conn))
+                    new SqlCommand(
+                        "SELECT COUNT(*) FROM Patients",
+                        conn))
                 {
                     lblStatTotal.Text =
                         cmd.ExecuteScalar().ToString();
                 }
 
-                // Total Doctors
-                using (SqlCommand cmd =
-                    new SqlCommand("SELECT COUNT(*) FROM Doctors", conn))
-                {
-                    lblStatActive.Text =
-                        cmd.ExecuteScalar().ToString();
-                }
-
-                // Users
-                using (SqlCommand cmd =
-                    new SqlCommand("SELECT COUNT(*) FROM Users", conn))
-                {
-                    lblStatUpcoming.Text =
-                        cmd.ExecuteScalar().ToString();
-                }
-
-                // Patients with chronic disease
                 using (SqlCommand cmd =
                     new SqlCommand(@"
                         SELECT COUNT(*)
                         FROM Patients
                         WHERE ChronicDisease IS NOT NULL
-                        AND ChronicDisease <> ''", conn))
+                        AND ChronicDisease <> ''",
+                        conn))
                 {
                     lblStatOnMeds.Text =
                         cmd.ExecuteScalar().ToString();
                 }
+
+                using (SqlCommand cmd =
+                    new SqlCommand(@"
+                        SELECT COUNT(*)
+                        FROM Patients
+                        WHERE PhoneNumber IS NOT NULL
+                        AND PhoneNumber <> ''",
+                        conn))
+                {
+                    lblStatUpcoming.Text =
+                        cmd.ExecuteScalar().ToString();
+                }
+
+                lblStatActive.Text = lblStatTotal.Text;
             }
         }
 
-        // =========================================================
+        // =====================================================
         // SEARCH
-        // =========================================================
-        protected void btnClearSearch_Click(object sender, EventArgs e)
+        // =====================================================
+        protected void txtSearch_TextChanged(
+            object sender,
+            EventArgs e)
+        {
+            LoadPatients();
+        }
+
+        protected void btnClearSearch_Click(
+            object sender,
+            EventArgs e)
         {
             txtSearch.Text = "";
+
+            ddlGender.SelectedIndex = 0;
+
             LoadPatients();
         }
 
-        // =========================================================
-        // FILTERS
-        // =========================================================
-        protected void ddlGender_SelectedIndexChanged(object sender, EventArgs e)
+        // =====================================================
+        // FILTER
+        // =====================================================
+        protected void ddlGender_SelectedIndexChanged(
+            object sender,
+            EventArgs e)
         {
             LoadPatients();
         }
 
-        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadPatients();
-        }
-
-        // =========================================================
-        // REPEATER COMMANDS
-        // =========================================================
-        protected void rptPatients_ItemCommand(object source,
+        // =====================================================
+        // REPEATER ACTIONS
+        // =====================================================
+        protected void rptPatients_ItemCommand(
+            object source,
             RepeaterCommandEventArgs e)
         {
             int patientId =
                 Convert.ToInt32(e.CommandArgument);
 
+            // MEDICATION PAGE
             if (e.CommandName == "OpenMedications")
             {
-                ShowToast("Medication section is not connected yet.");
+                Response.Redirect(
+                    "~/Pages/Doctor/ManageMedication.aspx?PatientId="
+                    + patientId
+                );
             }
 
+            // NUTRITION PAGE
             else if (e.CommandName == "OpenNutrition")
             {
-                ShowToast("Nutrition section is not connected yet.");
+                Response.Redirect(
+                    "~/Pages/Doctor/ManageNutrition.aspx?PatientId="
+                    + patientId
+                );
             }
 
+            // DELETE
             else if (e.CommandName == "RequestRemove")
             {
                 DeletePatient(patientId);
             }
         }
 
-        // =========================================================
+        // =====================================================
         // DELETE PATIENT
-        // =========================================================
+        // =====================================================
         private void DeletePatient(int patientId)
         {
             using (SqlConnection conn =
@@ -175,7 +246,9 @@ namespace MediCare.Pages.Doctor
                     new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue(
-                        "@PatientId", patientId);
+                        "@PatientId",
+                        patientId
+                    );
 
                     conn.Open();
 
@@ -186,12 +259,13 @@ namespace MediCare.Pages.Doctor
             ShowToast("Patient removed successfully.");
 
             LoadPatients();
+
             LoadStatistics();
         }
 
-        // =========================================================
+        // =====================================================
         // TOAST
-        // =========================================================
+        // =====================================================
         private void ShowToast(string message)
         {
             pnlToast.Visible = true;
@@ -199,9 +273,9 @@ namespace MediCare.Pages.Doctor
             lblToastMsg.Text = message;
         }
 
-        // =========================================================
+        // =====================================================
         // INITIALS
-        // =========================================================
+        // =====================================================
         private string GetInitials(string fullName)
         {
             if (string.IsNullOrWhiteSpace(fullName))
