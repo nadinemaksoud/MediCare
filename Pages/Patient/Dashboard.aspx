@@ -49,89 +49,138 @@
     <!-- MAIN GRID -->
     <div class="pd-main-grid">
         <!-- LEFT -->
-        <div class="pd-col-left">
-            <!-- HEALTH INFO -->
-            <div class="pd-card">
-                <div class="pd-card__header">
-                    <div class="pd-card__title-group">
-                        <div class="pd-card__icon pd-card__icon--green">
-                            <i class="fa-solid fa-heart-pulse"></i>
-                        </div>
-                        <div>
-                            <h2 class="pd-card__title">
-                                Health Information
-                            </h2>
-                            <p class="pd-card__subtitle">
-                                Your medical profile
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="pd-card__body">
-                    <div class="pd-hv-grid">
-                        <div class="pd-hv-item">
-                            <span class="pd-hv-label">Height</span>
-                            <span class="pd-hv-value">
-                                <asp:Label ID="lblHeight" runat="server" /> cm
-                            </span>
-                        </div>
+        <div class="pd-col-left"><!-- HEALTH INFO -->
+<div class="pd-card">
 
-                        <div class="pd-hv-item">
-                            <span class="pd-hv-label">Weight</span>
-                            <span class="pd-hv-value">
-                                <asp:Label ID="lblWeight" runat="server" /> kg
-                            </span>
-                        </div>
+    <div class="pd-card__header">
+        <div class="pd-card__title-group">
 
-                        <div class="pd-hv-item">
-                            <span class="pd-hv-label">Calories</span>
-                            <span class="pd-hv-value">
-                                <asp:Label ID="lblCalories" runat="server" /> kcal
-                            </span>
-                        </div>
+            <div class="pd-card__icon pd-card__icon--green">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
 
-                        <div class="pd-hv-item">
-                            <span class="pd-hv-label">Blood Type</span>
-                            <span class="pd-hv-value">
-                                <asp:Label ID="lblBloodType" runat="server" />
-                            </span>
-                        </div>
+            <div>
+                <h2 class="pd-card__title">
+                    Health Information
+                </h2>
 
-                        <div class="pd-hv-item">
-                            <span class="pd-hv-label">Age</span>
-                            <span class="pd-hv-value">
-                                <asp:Label ID="lblAge" runat="server" /> yrs
-                            </span>
-                        </div>
-
-                        <div class="pd-hv-item">
-                            <span class="pd-hv-label">Disease</span>
-                            <span class="pd-hv-value">
-                                <asp:Label ID="lblDisease" runat="server" />
-                            </span>
-                        </div>
-
-                        <div class="pd-hv-item">
-                            <span class="pd-hv-label">Disability</span>
-                            <span class="pd-hv-value">
-                                <asp:Label ID="lblDisability" runat="server" />
-                            </span>
-                        </div>
-
-                        <div class="pd-hv-item">
-                            <span class="pd-hv-label">Family History</span>
-                            <span class="pd-hv-value">
-                                <asp:Label ID="lblFamilyHistory" runat="server" />
-                            </span>
-                        </div>
-
-                    </div>
-
-                </div>
-
+                <p class="pd-card__subtitle">
+                    Your medical profile
+                </p>
             </div>
 
         </div>
+
+        <asp:Button ID="btnSaveHealth"
+            runat="server"
+            Text="Save Changes"
+            CssClass="mc-btn mc-btn--primary"
+            OnClick="btnSaveHealth_Click" />
+    </div>
+
+    <div class="pd-card__body">
+
+        <div class="pd-hv-grid">
+
+            <!-- HEIGHT -->
+            <div class="pd-hv-item">
+                <span class="pd-hv-label">Height (cm)</span>
+
+                <asp:TextBox ID="txtHeight"
+                    runat="server"
+                    CssClass="pd-input" />
+            </div>
+
+            <!-- WEIGHT -->
+            <div class="pd-hv-item">
+                <span class="pd-hv-label">Weight (kg)</span>
+
+                <asp:TextBox ID="txtWeight"
+                    runat="server"
+                    CssClass="pd-input" />
+            </div>
+
+            <!-- GENDER -->
+            <div class="pd-hv-item">
+                <span class="pd-hv-label">Gender</span>
+
+                <asp:DropDownList ID="ddlGender"
+                    runat="server"
+                    CssClass="pd-input">
+
+                    <asp:ListItem Text="Male" Value="Male" />
+                    <asp:ListItem Text="Female" Value="Female" />
+                </asp:DropDownList>
+            </div>
+
+            <!-- BLOOD TYPE -->
+            <div class="pd-hv-item">
+                <span class="pd-hv-label">Blood Type</span>
+
+                <asp:DropDownList ID="ddlBloodType"
+                    runat="server"
+                    CssClass="pd-input">
+
+                    <asp:ListItem Text="A+" Value="A+" />
+                    <asp:ListItem Text="A-" Value="A-" />
+                    <asp:ListItem Text="B+" Value="B+" />
+                    <asp:ListItem Text="B-" Value="B-" />
+                    <asp:ListItem Text="AB+" Value="AB+" />
+                    <asp:ListItem Text="AB-" Value="AB-" />
+                    <asp:ListItem Text="O+" Value="O+" />
+                    <asp:ListItem Text="O-" Value="O-" />
+
+                </asp:DropDownList>
+            </div>
+
+            <!-- AGE -->
+            <div class="pd-hv-item">
+                <span class="pd-hv-label">Age</span>
+
+                <asp:TextBox ID="txtAge"
+                    runat="server"
+                    CssClass="pd-input" />
+            </div>
+
+            <!-- DISEASE -->
+            <div class="pd-hv-item">
+                <span class="pd-hv-label">Disease</span>
+
+                <asp:TextBox ID="txtDisease"
+                    runat="server"
+                    CssClass="pd-input" />
+            </div>
+
+            <!-- DISABILITY -->
+            <div class="pd-hv-item">
+                <span class="pd-hv-label">Disability</span>
+
+                <asp:TextBox ID="txtDisability"
+                    runat="server"
+                    CssClass="pd-input" />
+            </div>
+
+            <!-- FAMILY HISTORY -->
+            <div class="pd-hv-item">
+                <span class="pd-hv-label">Family History</span>
+
+                <asp:TextBox ID="txtFamilyHistory"
+                    runat="server"
+                    TextMode="MultiLine"
+                    Rows="4"
+                    CssClass="pd-input pd-input--textarea" />
+            </div>
+
+        </div>
+
+        <asp:Label ID="lblHealthMessage"
+            runat="server"
+            CssClass="pd-success-msg"
+            Visible="false" />
+
+    </div>
+
+</div>
 
         <!-- RIGHT -->
         <div class="pd-col-right">
@@ -280,7 +329,7 @@
                                         <div class="pd-inv-bar-wrap">
 
                                             <div class="pd-inv-bar"
-                                                    style="<%# 'width:' + Eval('Percentage') + '%;' %>">
+                                                    style='width: <%# Eval("Percentage") %>%'>
                                             </div>
 
                                         </div>
