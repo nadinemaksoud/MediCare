@@ -9,7 +9,7 @@ namespace MediCare.Pages.Patient
         private int medicineId;
 
 
-        private string medicineId = "";
+        //private string medicineId = "";
         private string medicineName = "";
 
         protected void Page_Load(object sender, EventArgs e)
