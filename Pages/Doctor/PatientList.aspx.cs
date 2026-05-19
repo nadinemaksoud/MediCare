@@ -14,16 +14,16 @@ namespace MediCare.Pages.Doctor
 
         protected void Page_Load(object sender, EventArgs e)
            {
-        //    if (Session["UserId"] == null || Session["Role"] == null)
-        //    {
-        //        Response.Redirect("~/Pages/Account/Login.aspx");
-        //        return;
-        //    }
+            if (Session["UserId"] == null || Session["Role"] == null)
+            {
+                Response.Redirect("~/Pages/Account/Login.aspx");
+                return;
+            }
 
-        //    if (Session["Role"].ToString() != "Doctor")
-        //    {
-        //        Response.Redirect("~/Default.aspx");
-        //        return;
+            //    if (Session["Role"].ToString() != "Doctor")
+            //    {
+            //        Response.Redirect("~/Default.aspx");
+            //        return;
             //}
 
             if (!IsPostBack)
